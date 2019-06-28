@@ -1,0 +1,8 @@
+<div class="component-login">
+  <h2>Log In</h2>
+  <div>
+    <usana-form-input [data]="{label: 'Username'}"(dataOut)="this.collectUserName($event)"></usana-form-input>
+    <usana-form-input [data]="{label: 'Password', inputType: 'password'}" (dataOut)="this.collectPassword($event)"></usana-form-input>
+    <usana-button [data]="{buttonClass: 'button-large-primary'}" (click)="this.submit()">Submit</usana-button>
+  </div>
+</div>

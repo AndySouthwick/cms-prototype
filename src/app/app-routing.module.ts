@@ -1,10 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-const routes: Routes = [];
-
+import {HomeComponent} from './pages/home/home.component';
+import {PageComponent} from './pages/page/page.component';
+import {ImageToolComponent} from './pages/image-tool/image-tool.component';
+import {TypeCreatorComponent} from './pages/type-creator/type-creator.component';
+import {AdminComponent} from './pages/admin/admin.component'
+import {AddPageEditPageComponent} from './components/add-page-edit-page/add-page-edit-page.component';
+import {AddContentComponent} from './components/add-content/add-content.component';
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot([
+    {path: '', component: HomeComponent},
+    {path: 'image-service', component: ImageToolComponent},
+    {path: 'page/:id', component: PageComponent},
+    {path: 'type-creator', component: TypeCreatorComponent},
+    {path: 'dashboard', component: AdminComponent},
+    {path: 'dashboard/add-edit', component: AddPageEditPageComponent},
+    {path: 'dashboard/add-edit/:pageId', component: AddPageEditPageComponent},
+    {path: 'dashboard/add-edit/:pageId/:contentTypeName', component: AddContentComponent},
+    {path: 'dashboard/add-edit/:pageId/:contentTypeName/:contentId', component: AddContentComponent},
+
+
+
+  ])],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,0 +1,13 @@
+<!--<div class="content-inputs">-->
+    <!--<usana-form-input [data]="{label: input.label}" *ngFor="let input of inputTypes" class="content-input" (dataOut)="sendUpMutation($event, input.label)"></usana-form-input>-->
+<!--</div>-->
+  <div *ngFor="let input of inputTypes">
+    <usana-form-input [data]="{label: input.inputTypeName, value: input.inputTypeValue }"  class="content-input" (dataOut)="sendUpMutation($event, input.inputTypeName, input.id)" *ngIf="input.inputTypeName"></usana-form-input>
+    <usana-form-input [data]="{label: input.label }"  class="content-input" (dataOut)="sendUpMutation($event, input.inputTypeName)" *ngIf="input.label"></usana-form-input>
+
+  </div>
+<div class="button-input">
+  <usana-button [data]="{buttonClass: 'button-large-primary'}">Save</usana-button>
+</div>
+
+

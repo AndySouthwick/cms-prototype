@@ -1,0 +1,34 @@
+<app-add-image (dataOut)="this.filterImages($event)"></app-add-image>
+<section class="image-folder-section">
+  <div class="image-folders">
+    <div class="image-folder" (click)="this.filterImages('320x192')">
+     Card(320x192)
+    </div>
+    <div class="image-folder" (click)="this.filterImages('1440x1024')">
+      Cover(1440x1024)
+    </div>
+    <div class="image-folder" (click)="this.filterImages('720x450')">
+      Hero(720x450)
+    </div>
+    <div class="image-folder" (click)="this.filterImages('150x150')">
+      Product(150x150)
+    </div>
+  </div>
+</section>
+<header>{{this.state.name}}</header>
+<div class="content-wrapper">
+<section class="side-by-side">
+  <div class="images-display" *ngIf="result">
+    <div *ngFor="let imageSrc of result.filterImagesByDimensions" class="image">
+      <img src="{{imageSrc.thumbnail}}" alt="" *ngIf="imageSrc.thumbnail" (click)="singleItemDetails(imageSrc)" (dblclick)=" copyMessage(imageSrc.imageUrl)">
+    </div>
+    </div>
+  <div class="edit-section">
+    <div class="alert-box" *ngIf="this.state.alert">
+
+      <usana-alert [data]="this.state.alert"></usana-alert>
+    </div>
+    <app-image-details [data]="this.singleImageDetails" *ngIf="singleImageDetails" (dataOut)="copyMessage($event)"></app-image-details>
+  </div>
+</section>
+</div>

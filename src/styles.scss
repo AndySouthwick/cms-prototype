@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+@import './style-params.scss';
+@import "responsive-params";
+
+body{@include font-body;}
+h1{@include font-h-1-desktop}
+h2{@include font-h-2-desktop;}
+h3{@include font-h-3-desktop;}
+h4{@include font-h-4-desktop}
+
+@media(max-width: $md-width){
+  h1{@include font-h-1-mobile}
+  h2{ @include font-h-2-mobile;}
+  h3{@include font-h-3-mobile;}
+  h4{@include font-h-3-mobile}
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+:focus{
+  outline:none;
+}
+
+section {
+  margin: 48px 0 48px 0;
+  display: flex;
+  justify-content: center;
+  .section-card {
+    display: flex;
+    padding: 40px;
+    @media(max-width: 1440px) {
+      //width: 100vw;
+    }
+  }
+}
+
+.content-wrapper{
+  display: flex;
+  justify-content: center;
+}
+button:not(.close){
+  //margin-bottom: 32px!important;
+}
+

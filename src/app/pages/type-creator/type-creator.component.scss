@@ -1,0 +1,54 @@
+@import "../../../style-params";
+
+.input-type-names:nth-child(2n+1){
+  background-color: $usana-grey-300;
+  color: $usana-white-000
+}
+.input-type-names{
+  padding: 12px;
+  cursor: default;
+}
+
+.create-section{
+  width: 300px;
+}
+.view-all-content-types{
+  max-width: 70%;
+  .input-types-section{
+    padding: 24px;
+    min-width: 700px;
+    border: solid $usana-grey-100;
+    ::ng-deep:nth-child(2n+1) .panel.card.panel-default .panel-heading.card-header{
+      background-color: $usana-white-000!important;
+      .btn-link{
+        color:$usana-grey-300 !important
+      }
+    }
+    ::ng-deep .panel.card.panel-default .panel-heading.card-header{
+      background-color:$usana-grey-300!important;
+      .btn-link{
+        color:$usana-white-000  !important
+      }
+    }
+  }
+}
+.section-content-types{
+  display: flex;
+}
+.btn-link{
+  cursor: default;
+}
+//.panel{
+//  height: 60px!important;
+//}
+.panel-heading.card-header{
+  height: 60px!important;
+  padding: 0!important;
+}
+.panel-title {
+  height: 40px;
+}
+div.accordion-toggle{
+  height: 60px;
+}
+

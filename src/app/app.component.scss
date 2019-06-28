@@ -1,0 +1,16 @@
+@import "../style-params";
+body{
+  overflow-x: hidden;
+}
+section {
+  margin: 48px 0;
+  display: flex;
+  justify-content: center;
+  h2{
+    text-align: center!important;
+    margin-bottom: 48px;
+  }
+}
+.dashboard-main {
+  display: flex;
+}

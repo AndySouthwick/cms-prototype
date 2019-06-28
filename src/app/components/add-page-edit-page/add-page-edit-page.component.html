@@ -1,0 +1,17 @@
+<usana-form-input [data]="{label: 'Page Title'}" (dataOut)="dataFromForm($event)"></usana-form-input>
+<div *ngIf="routeParams.pageId" class="add-to-page">
+  <div>
+    <a [routerLink]="'../' + routeParams.pageId + '/'+ content.typeName" *ngFor="let content of contentTypes">{{content.typeName}}</a>
+  </div>
+  <div *ngFor="let area of contentAreas">
+    {{area.areaName}}
+    <div *ngFor="let content of area.content">
+        <a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id">
+          <span *ngIf="content.texts[0].inputTypeName === 'title'">{{content.texts[0].inputTypeValue}}</span>
+        </a>
+        <a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id">
+          <span *ngIf="content.texts[0].inputTypeName !== 'title'">{{content.contentTypeName}}</span>
+        </a>
+    </div>
+  </div>
+</div>

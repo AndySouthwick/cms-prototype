@@ -1,0 +1,26 @@
+.cards{
+  display: flex;
+  justify-content: center;
+  @media(max-width: 1200px) {
+    width: 100%;
+  }
+}
+.section-card{
+  display: flex;
+  padding: 40px;
+  @media(max-width:1440px){
+    width:  100%;
+  }
+}
+.card-slide-wrapper{
+  @media(max-width: 1200px) {
+    width: 100%;
+  }
+  overflow-x: scroll;
+  @media(max-width:1440px){
+    width:  100vw;
+  }
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}

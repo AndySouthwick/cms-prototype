@@ -1,0 +1,11 @@
+@import "../../../responsive-params";
+.text-centered-section{
+   display: flex;
+   flex-direction: column;
+   max-width: 700px;
+  padding: 0 48px;
+
+  @media (max-width: $md-width) {
+    max-width: 380px;
+  }
+}

@@ -1,0 +1,9 @@
+.edit-image-section{
+  display: flex;
+  flex-direction: column;
+  .button-left{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+

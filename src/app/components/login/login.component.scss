@@ -1,0 +1,16 @@
+@import '../../../style-params';
+.component-login{
+  width: 320px;
+  padding: 40px;
+  border-radius: 4px;
+  -webkit-box-shadow: -1px 10px 19px -9px usana-grey-900;
+  -moz-box-shadow: -1px 10px 19px -9px rgba(0,0,0,0.75);
+  box-shadow: -1px 10px 19px -9px rgba(19,30,41,1);
+  h2{
+    margin: 0;
+    text-align: center;
+  }
+  display: flex;
+  flex-direction: column;
+
+}

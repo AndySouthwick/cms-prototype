@@ -1,0 +1,48 @@
+@import "../../../responsive-params";
+div.text-right-section {
+  max-width: 1440px;
+  display: flex;
+  flex-direction: row-reverse;
+  .text-right {
+    padding: 0 24px;
+    max-width: 720px;
+    height: 100%;
+  }
+  .image-left {
+    img{
+      width: 100%;
+    }
+    height: 100%;
+  }
+  @media(max-width: $lg-width) {
+    max-width: 700px;
+    flex-direction: column;
+    .image-left {
+      display: flex;
+      justify-content: center;
+      img {
+        align-self: center;
+      }
+    }
+  }
+  @media(max-width: $md-width){
+    max-width: 380px;
+
+    .image-right{
+      //max-width: 600px;
+    }
+  }
+  @media(max-width: $sm-width){
+    .image-left{
+      padding: 0 48px;
+      max-width: 320px;
+    }
+    .text-right{
+      padding: 0 48px;
+
+      min-width: 320px;
+    }
+    max-width: 460px;
+
+  }
+}

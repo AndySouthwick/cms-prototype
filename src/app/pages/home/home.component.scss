@@ -1,0 +1,10 @@
+@import '../../../style-params';
+.text-editor{
+  max-width: 700px;
+  border: solid $usana-grey-100;
+  border-radius: 4px;
+}
+.page-home{
+  display: flex;
+  justify-content: center;
+}
