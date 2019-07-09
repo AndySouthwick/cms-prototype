@@ -1,6 +1,7 @@
 # CMS Prototype
 This project is built to work with a prisma graphql server.
 With it you can create keys and values that corespond to components on pages
+built to be used with https://github.com/AndySouthwick/prisma-cms
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
