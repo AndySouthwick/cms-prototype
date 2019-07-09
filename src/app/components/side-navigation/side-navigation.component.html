@@ -1,6 +1,11 @@
 <nav class="side-nav">
   <ul>
-    <li>+ Page</li>
-    <li>+ Post</li>
+    <li><a [routerLink]="'dashboard'">Dashboard Home</a></li>
+    <li><a [routerLink]="'/dashboard/add-edit'">+ Page</a></li>
+    <!--<li><a [routerLink]="'/dashboard/add-edit'">+ Post</a></li>-->
+    <li><a [routerLink]="'/dashboard/type-creator'">Create Type</a></li>
+    <li><a [routerLink]="'/dashboard/image-service'">Image Service</a></li>
+    <li><a href="http://localhost:4466/_admin" target="_blank">admin tables</a></li>
+    <li><usana-select-input [data]="{label: 'Select Market', options: ['en_us', 'en_es', 'en_ch']}"></usana-select-input></li>
   </ul>
 </nav>

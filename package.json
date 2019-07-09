@@ -40,6 +40,7 @@
     "graphql": "^14.3.0",
     "graphql-tag": "^2.10.1",
     "ng2-ckeditor": "^1.2.2",
+    "ng2-dragula": "^2.1.1",
     "ngx-bootstrap": "^4.1.1",
     "rxjs": "~6.3.3",
     "subscriptions-transport-ws": "^0.9.16",

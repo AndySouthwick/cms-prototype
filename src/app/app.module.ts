@@ -16,7 +16,7 @@ import { TextRightSectionComponent } from './components/text-right-section/text-
 import { TextCenteredSectionComponent } from './components/text-centered-section/text-centered-section.component';
 import {
   UsanaHeroSliderModule, UsanaCardModule, UsanaFormInputModule, UsanaButtonModule,
-  UsanaTextArea, UsanaSelectInputModule, UsanaAlertModule
+  UsanaTextArea, UsanaSelectInputModule, UsanaAlertModule, CoverSliderModule
 } from '@usana/component-library';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule } from '@angular/forms';
@@ -35,6 +35,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { AddPageEditPageComponent } from './components/add-page-edit-page/add-page-edit-page.component';
 import { AddContentComponent } from './components/add-content/add-content.component';
+import { DragulaModule } from 'ng2-dragula';
 @NgModule({
   schemas: [NO_ERRORS_SCHEMA],
   declarations: [
@@ -73,9 +74,11 @@ import { AddContentComponent } from './components/add-content/add-content.compon
     UsanaTextArea,
     UsanaSelectInputModule,
     UsanaAlertModule,
+    CoverSliderModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    DragulaModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })

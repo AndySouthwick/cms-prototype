@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import gql from 'graphql-tag';
 import {Subscription} from 'apollo-angular';
 import {Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, flatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ContentTypesService extends Subscription {
+  ContentId: String;
    QUERY_CONTENTY_TYPES =  gql`
   {allContentTypes{
     id typeName
@@ -17,9 +18,14 @@ export class ContentTypesService extends Subscription {
 `
   QUERY_CONTENT = gql`query content($id: ID!){
     content(id: $id){
-      id texts {
+      id texts{
         id
         inputTypeName,
+        inputTypeValue
+      }
+      richTexts{
+        id
+        inputTypeName
         inputTypeValue
       }
     }
@@ -30,29 +36,178 @@ export class ContentTypesService extends Subscription {
       id label help input
     }
   }`
-
-  MUTATION_ADD_CONENT = gql`
+  MUTATION_UPDATE_RICH_TEXT = gql`
+    mutation updateRichText($id: ID! $inputTypeName: String $inputTypeValue: String){
+      updateRichText(id: $id, inputTypeName: $inputTypeName, inputTypeValue: $inputTypeValue){
+        id
+      }
+    }
+  `
+  MUTATION_UPDATE_TEXT = gql`
     mutation updateText($id: ID! $inputTypeName: String $inputTypeValue: String){
       updateText(id: $id, inputTypeName: $inputTypeName, inputTypeValue: $inputTypeValue){
         id
       }
     }
   `
-  addTheTextToTheContent  = (contentId, typeValue, typeName, textId) => {
-     console.log(contentId, typeName, typeValue, textId)
-   return  this.apollo.mutate({
-       mutation: this.MUTATION_ADD_CONENT,
+  MUTATION_ADD_TEXT = gql`
+    mutation addTextToContent($contentId: ID! $inputTypeName: String $inputTypeValue: String){
+      addTextToContent(contentId: $contentId, inputTypeName: $inputTypeName, inputTypeValue: $inputTypeValue){
+        id
+      }
+    }`
+  MUTATION_ADD_RICH_TEXT = gql`
+    mutation addRichTextToContent($contentId: ID! $inputTypeName: String $inputTypeValue: String){
+      addRichTextToContent(contentId: $contentId, inputTypeName: $inputTypeName, inputTypeValue: $inputTypeValue){
+        id
+      }
+    }`
+  MUTATION_CREATE_AREA =gql`
+    mutation createContentArea($pageName: String, $areaName: String){
+      createContentArea(pageName: $pageName, areaName: $areaName){
+        id
+      }
+    }
+  `
+  MUTATION_ADD_CONTENT_TO_AREA = gql`
+    mutation addContentToArea($contentTypeName: String, $areaId: ID!){
+      addContentToArea(contentTypeName: $contentTypeName, areaId: $areaId){
+        id
+      }
+    }
+  `
+  MUTATION_ORDER_CONTENT = gql`
+    mutation updateContentArea($areaId: ID, $order: Int){
+      updateContentArea(areaId: $areaId, order: $order){
+        order
+      }
+    }
+  `
+  updateOrder(id, order): Observable <any> {
+     console.log(id, order)
+     return this.apollo.mutate({
+       mutation: this.MUTATION_ORDER_CONTENT,
        variables: {
-         id: textId,
-         inputTypeName: typeName,
-         inputTypeValue: typeValue
+         areaId: id,
+         order: order
        }
-     }).subscribe(({data, loading, err}) => {
-     if (err) { console.log(err); }
+     }).pipe(map(({data, loading}) => {
        if (loading) { return loading; }
-       console.log(data);
+      console.log(data)
+       // console.log('promise in filterImages', data);
        return data;
-     });
+     }));
+  }
+    addContentToIterable(areaId, contentTypeName): Observable<any> {
+     console.log(areaId, contentTypeName);
+       return this.apollo.mutate({
+         mutation: this.MUTATION_ADD_CONTENT_TO_AREA,
+         variables: {
+           areaId: areaId,
+           contentTypeName: contentTypeName
+         }
+       }).pipe(map(({data}) => data));
+    }
+      addTheTextToTheContent(pageName, contentTypeName, contentId, typeValue, typeName, textId, input): Observable<any> {
+     // console.log(pageName, contentId, typeValue, typeName, textId)
+        if (!contentId) {
+       // console.log('this got hit theres not contentID sent', contentTypeName)
+            return this.apollo.mutate({
+              mutation: this.MUTATION_CREATE_AREA,
+              variables: {
+                pageName: pageName,
+                areaName: contentTypeName
+              }
+            })
+              .pipe(flatMap(({data}) => {
+              // console.log(data.createContentArea.id);
+              return this.apollo.mutate({
+                mutation: this.MUTATION_ADD_CONTENT_TO_AREA,
+                variables: {
+                  areaId: data.createContentArea.id,
+                  contentTypeName: contentTypeName
+                }
+              })
+                .pipe(flatMap(({data}) => {
+                  this.ContentId = data.addContentToArea.id
+                  // console.log('typeName on the create new area', data.addContentToArea.id)
+                  let mutation
+                  switch (input) {
+                    case 'TEXT':
+                      mutation = this.MUTATION_ADD_TEXT;
+                      break
+                      case 'RICH_TEXT':
+                        mutation = this.MUTATION_ADD_RICH_TEXT;
+                  }
+                  console.log(input)
+                    return this.apollo.mutate({
+                      mutation: mutation,
+                      variables: {
+                        contentId: data.addContentToArea.id,
+                        inputTypeName: typeName,
+                        inputTypeValue: typeValue
+                      }
+                    }).pipe(map(({data, loading, err}) => {
+                      console.log('final pipe', this.ContentId)
+                      if (err) console.log(err);
+                      if (loading) return loading;
+                      return {
+                        data,
+                        contentId: this.ContentId
+                      };
+                    }));
+              }));
+            }));
+        }
+    if (textId) {
+      let mutation;
+      console.log(input)
+      switch (input) {
+        case 'TEXT':
+          mutation = this.MUTATION_UPDATE_TEXT;
+          break
+        case 'RICHTEXT':
+          mutation = this.MUTATION_UPDATE_RICH_TEXT;
+      }
+      return  this.apollo.mutate({
+        mutation: mutation,
+        variables: {
+          id: textId,
+          inputTypeName: typeName,
+          inputTypeValue: typeValue
+        }
+      }).pipe(map(({data, loading, err}) => {
+        if (err) { console.log(err); }
+        if (loading) { return loading; }
+        console.log(data);
+        return data;
+      }));
+    } else {
+
+      let mutation
+      switch (input) {
+        case 'TEXT':
+          mutation = this.MUTATION_ADD_TEXT;
+          break;
+        case 'RICH_TEXT':
+          mutation = this.MUTATION_ADD_RICH_TEXT;
+
+      }
+       console.log(typeName);
+      return this.apollo.mutate( {
+        mutation: mutation,
+        variables: {
+          contentId: contentId,
+          inputTypeName: typeName,
+          inputTypeValue: typeValue
+        }
+      }).pipe(map(({data, loading, err}) => {
+        if (err) { console.log(err); }
+        if (loading) { return loading; }
+        console.log(data);
+        return data;
+      }));
+    }
   }
   queryContent (id): Observable<any> {
      console.log(id)

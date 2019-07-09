@@ -10,14 +10,13 @@ export class PageComponent implements OnInit, OnDestroy {
   loadComponents: any;
   passComponents: any;
   id: string;
-  private sub: any;
 
   constructor(private componentsService: ComponentsService,
               private activeRoute: ActivatedRoute) {
   }
   loadTheComponents(): void {
     const routeParams = this.activeRoute.snapshot.params;
-    this.loadComponents = this.componentsService.fetchComponentDataForPage(routeParams.id)
+    this.loadComponents = this.componentsService.fetchComponentDataForPage(routeParams.id, false)
       .subscribe(x => {
         console.log(x);
         let loadComponentsArray = [];
@@ -26,18 +25,26 @@ export class PageComponent implements OnInit, OnDestroy {
           let contentTypeName = ''
           contentArea.content.map((component) => {
             contentTypeName = component.contentTypeName
-            let componentText = {};
+            let componentData;
+            let text = {};
+            let richText = {};
             component.texts.map((componentData) => {
-              componentText = {...componentText, ...{[componentData.inputTypeName]: componentData.inputTypeValue}};
+              text = {...text, ...{[componentData.inputTypeName]: componentData.inputTypeValue}};
             });
-            loadComponent = [...loadComponent, componentText];
+            component.richTexts.map((componentData) => {
+              richText = {...richText, ...{[componentData.inputTypeName]: componentData.inputTypeValue}};
+            });
+            componentData = {...text, ...richText}
+            // console.log(richText)
+            // console.log(componentText)
+            loadComponent = [...loadComponent, componentData];
           });
           loadComponentsArray = [...loadComponentsArray, {[contentTypeName]: loadComponent}];
         });
         let passDataArray = [];
         passDataArray = [...passDataArray, loadComponentsArray];
         this.passComponents = passDataArray;
-        console.log(this.passComponents);
+        console.log('component data', this.passComponents);
       },
         err => {
         console.log(err);

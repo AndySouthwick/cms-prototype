@@ -3,7 +3,7 @@ body{
   overflow-x: hidden;
 }
 section {
-  margin: 48px 0;
+  //margin: 48px 0;
   display: flex;
   justify-content: center;
   h2{
@@ -11,6 +11,10 @@ section {
     margin-bottom: 48px;
   }
 }
+
 .dashboard-main {
   display: flex;
+  flex-direction: column;
+  margin-left: 250px;
+  max-width: 900px
 }

@@ -1,6 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-navigation></app-navigation>
-<div class="dashboard-main">
-<app-side-navigation *ngIf="path === '/dashboard' || 'dashboard/*'"></app-side-navigation>
-  <router-outlet></router-outlet>
-</div>
+<app-navigation *ngIf="dashboardNav"></app-navigation>
+<app-side-navigation *ngIf="dashboardNav"></app-side-navigation>
+<router-outlet></router-outlet>
+

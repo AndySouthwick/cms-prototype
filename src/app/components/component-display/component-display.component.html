@@ -13,7 +13,8 @@
     }">
     </usana-card>
 </app-card-section>
- <app-text-left-section *ngIf="data.textLeftIs" [data]="data"></app-text-left-section>
- <app-text-right-section *ngIf="data.textRightIs" [data]="data"></app-text-right-section>
-   <app-text-centered-section *ngIf="theData.textCenterSection" [data]="theData.textCenterSection[0]"></app-text-centered-section>
+  <app-text-left-section *ngIf="theData.textLeftIs" [data]="theData.textLeftIs[0]"></app-text-left-section>
+  <app-text-right-section *ngIf="theData.textRightIs" [data]="theData.textRightSection[0]"></app-text-right-section>
+  <app-text-centered-section *ngIf="theData.textCenterSection" [data]="theData.textCenterSection[0]"></app-text-centered-section>
+  <usana-cover-slider [data]="{slides: theData.heroCover, slideTime: 8000}" *ngIf="theData.heroCover"></usana-cover-slider>
  </section>

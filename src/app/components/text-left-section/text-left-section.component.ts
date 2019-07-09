@@ -10,6 +10,7 @@ export class TextLeftSectionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  console.log(this.data)
   }
 
 }

@@ -13,7 +13,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.pageService.fetchAllPage().subscribe(x => {
-      console.log('hit this');
+      console.log( x.allPages);
       this.pageData = x.allPages;
 
     });

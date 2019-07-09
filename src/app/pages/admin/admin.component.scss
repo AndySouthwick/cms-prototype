@@ -1,3 +1,19 @@
-p{
-    margin: 16px 80px;
+@import "../../../style-params";
+
+.page:nth-child(2n+1){
+  background-color: $usana-fuscia-600;
+  div {
+    color: $usana-white-000;
   }
+  max-width: 500px;
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  height: 40px;
+  div{
+    color: #353535;
+  }
+}

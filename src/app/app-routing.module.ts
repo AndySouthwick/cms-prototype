@@ -10,9 +10,9 @@ import {AddContentComponent} from './components/add-content/add-content.componen
 @NgModule({
   imports: [RouterModule.forRoot([
     {path: '', component: HomeComponent},
-    {path: 'image-service', component: ImageToolComponent},
+    {path: 'dashboard/image-service', component: ImageToolComponent},
     {path: 'page/:id', component: PageComponent},
-    {path: 'type-creator', component: TypeCreatorComponent},
+    {path: 'dashboard/type-creator', component: TypeCreatorComponent},
     {path: 'dashboard', component: AdminComponent},
     {path: 'dashboard/add-edit', component: AddPageEditPageComponent},
     {path: 'dashboard/add-edit/:pageId', component: AddPageEditPageComponent},

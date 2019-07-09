@@ -1,6 +1,21 @@
 @import "../../../style-params";
 nav.side-nav{
-  width: 320px;
-  height: 100vh;
-  background-color: $usana-grey-200;
+  width: 240px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top:80px;
+  background-color: $usana-grey-100;
+  border-right: solid $usana-fuscia-400;
+  padding: 24px;
+  a {
+    text-decoration: none;
+    color: #353535;
+  }
+  ul{
+    list-style: none;
+    li {
+      margin-top: 21px;
+    }
+  }
 }

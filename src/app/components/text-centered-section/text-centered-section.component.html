@@ -1,7 +1,6 @@
 <div class="text-centered-section">
     <img src={{data.image}} alt="" *ngIf="data.image" width="100%">
     <h2 *ngIf="data.title">{{data.title}}</h2>
-  <p>
-    {{data.content}}
+  <p [innerHTML]="data.content">
   </p>
 </div>

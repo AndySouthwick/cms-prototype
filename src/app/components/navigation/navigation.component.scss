@@ -2,5 +2,7 @@
 nav{
   width: 100vw;
   height: 80px;
-  background-color: $usana-grey-300;
+  background-color: $usana-fuscia-600;
+  position: fixed;
+  z-index: 999;
 }

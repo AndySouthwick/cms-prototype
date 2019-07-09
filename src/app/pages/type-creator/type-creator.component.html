@@ -1,8 +1,9 @@
+<div class="dashboard-main">
 <section class="section-content-types">
 <div class="create-section">
   <usana-form-input [data]="{label: 'Content Type Name', value: selectedContentTypeName}" (dataOut)="this.createTypeName($event)" ></usana-form-input>
   <div *ngIf="inputFromField">
-    <usana-form-input [data]="{label: 'Create Lable'}" (dataOut)="this.createLabel($event)" ></usana-form-input>
+    <usana-form-input [data]="{label: 'Create Field Name'}" (dataOut)="this.createLabel($event)" ></usana-form-input>
     <usana-form-input [data]="{label: 'Create Help'}" (dataOut)="this.createHelp($event)" ></usana-form-input>
     <usana-select-input [data]="{label: 'New Input Type', options: ['TEXT', 'RICH_TEXT', 'FILE', 'REFERENCE', 'TOGGLE', 'ITERABLE']}" (dataOut)="this.createInput($event)" ></usana-select-input>
     <usana-button [data]="{buttonClass: 'button-large-primary'}" (click)="sendMutationUp()" *ngIf="!selectedContentTypeName">Send</usana-button>
@@ -15,7 +16,7 @@
    <h2>{{selectedContentTypeName}}</h2>
     <accordion [isAnimated]="true">
       <accordion-group [heading]="queryInputs.label" *ngFor="let queryInputs of queryData">
-      <usana-form-input [data]="{label: 'Update Lable', value: queryInputs.label}" (dataOut)="this.createLabel($event)"></usana-form-input>
+      <usana-form-input [data]="{label: 'Update Field Name', value: queryInputs.label}" (dataOut)="this.createLabel($event)"></usana-form-input>
       <usana-select-input [data]="{label: 'Change Input Type', options: ['TEXT', 'RICH_TEXT', 'FILE', 'REFERENCE', 'TOGGLE', 'ITERABLE'], value: queryInputs.input}" (dataOut)="this.createInput($event)" ></usana-select-input>
       <usana-form-input [data]="{label: 'Update Help Text', value: queryInputs.help}"  (dataOut)="this.createHelp($event)"></usana-form-input>
       <usana-button [data]="{buttonClass:'button-small-primary'}" (click)="updateType(queryInputs.id)">Save</usana-button>
@@ -32,6 +33,7 @@
   </div>
 </div>
 </section>
+</div>
 <!--<div *ngFor="let button of this.buttonData">-->
   <!--<div *ngIf="button.cssClass !== undefined">-->
   <!--<usana-button [data]="{buttonClass: button.cssClass}">-->

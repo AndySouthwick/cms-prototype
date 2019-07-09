@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import gql from 'graphql-tag';
 import {Subscription} from 'apollo-angular';
 import {Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, flatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -42,28 +42,14 @@ export class PagesService extends Subscription {
       query: this.fetchContentTypes
     }).valueChanges.pipe(map(({data}) => data));
   }
-   createNewPage = (title)  => {
+   createNewPage (title): Observable<any> {
      return this.apollo.mutate({
        mutation: this.createPage,
        variables: {
          title: title,
          id: 'cjxavq82m001607991oavqcbs'
        }
-     }).subscribe(({data}) => {
-       this.apollo.mutate({
-         mutation: this.createContentAreaMain,
-         variables: {
-           areaName: 'main',
-           pageId: data.createDraft.id
-         }
-       }).subscribe(({data}) => {
-         // this.router.navigate(['/dashboard'])
-         console.log('data from area', data);
-         this.data = data.createContentArea.id;
-       })
-       console.log(data.createDraft.id)
-       return this.data;
-     });
+     }).pipe(map(({data}) => data));
   }
   fetchAllPage (): Observable<any>  {
     return this.apollo.watchQuery({

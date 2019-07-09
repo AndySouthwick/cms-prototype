@@ -1,3 +1,4 @@
+<div class="dashboard-main">
 <app-add-image (dataOut)="this.filterImages($event)"></app-add-image>
 <section class="image-folder-section">
   <div class="image-folders">
@@ -31,4 +32,5 @@
     <app-image-details [data]="this.singleImageDetails" *ngIf="singleImageDetails" (dataOut)="copyMessage($event)"></app-image-details>
   </div>
 </section>
+</div>
 </div>

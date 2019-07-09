@@ -27,7 +27,7 @@ export class CopyImageToServerService {
       console.log(res);
         },
         (err) => {
-          console.log('err from 4001', err);
+          console.log('err from 4000', err);
         });
   }
 }

@@ -71,6 +71,6 @@ export class ImageFolderSectionComponent implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy() {
-    this.result.unsubscribe();
+    // this.result.unsubscribe();
   }
 }

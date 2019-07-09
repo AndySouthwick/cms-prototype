@@ -50,24 +50,29 @@ export class ComponentsService extends Subscription {
   //         }
   //     }`
 
-  document = gql`query contentAreasOnPage($pageId: ID! $orderBy: SortableField) {
-    contentAreasOnPage(pageId: $pageId, orderBy: $orderBy){
-              id areaName
+  document = gql`query contentAreasOnPage($pageName: String $pageId: ID $orderBy: SortableField) {
+    contentAreasOnPage(pageName: $pageName, pageId: $pageId, orderBy: $orderBy){
+              id areaName order
       content{ 
         contentTypeName id
         texts{
+          inputTypeName id inputTypeValue
+        }
+        richTexts{
           inputTypeName id inputTypeValue
         }
         }
           }
       }`
 // tslint:enable
-  fetchComponentDataForPage (page): Observable<any> {
+  fetchComponentDataForPage (page, isDashboard): Observable<any> {
+    let pollInterval
+    isDashboard ? pollInterval = null : pollInterval = 1000;
    return this.apollo.watchQuery({
-    pollInterval: 1000,
+     pollInterval: pollInterval,
       query: this.document,
       variables: {
-        pageId: page,
+        pageName: page,
         orderBy: 'order_ASC'
       }
     }).valueChanges.pipe(map(({data}) => data));

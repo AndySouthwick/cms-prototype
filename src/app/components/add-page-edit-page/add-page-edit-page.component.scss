@@ -1,12 +1,18 @@
+@import '../../../style-params';
 .add-to-page{
   display: flex;
   ul{
     margin-right: 120px;
   }
-  a{
-    display: block;
-  }
+
  div  {
    margin-left: 40px;
  }
 }
+.accordion-thing{
+  margin-bottom: 16px;
+  min-width: 500px;
+}
+//.section-add-page-edit-page{
+//  margin: 80px
+//}
