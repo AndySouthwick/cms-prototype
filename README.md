@@ -3,6 +3,13 @@ This project is built to work with a prisma graphql server.
 With it you can create keys and values that corespond to components on pages
 built to be used with https://github.com/AndySouthwick/prisma-cms
 
+the idea is you build out your local component library and then add them to the component-display component. Your components are usually dumb components
+that consume data. inside of the cms at /type-creator you can add your model that represents
+your components data. This adds the model to the page creator on /dashboard.  
+
+We took the idea of creating content types from drupal. So your content types are what house the data or the content.
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
 ## Development server
