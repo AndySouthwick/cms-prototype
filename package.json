@@ -27,7 +27,6 @@
     "@ckeditor/ckeditor5-build-balloon": "^12.1.0",
     "@ckeditor/ckeditor5-build-classic": "^12.1.0",
     "@ckeditor/ckeditor5-build-decoupled-document": "^12.1.0",
-    "@usana/component-library": "file:../../usana/angular-reusable-components/dist/usana-component-library-0.1.0.tgz",
     "apollo-angular": "^1.5.0",
     "apollo-angular-link-http": "^1.6.0",
     "apollo-cache-inmemory": "^1.5.1",
