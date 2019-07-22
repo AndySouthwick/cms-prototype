@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ContentTypesService } from './content-types.service';
+import { SelctFromEnumService } from './selct-from-enum.service';
 
-describe('ContentTypesService', () => {
+describe('SelctFromEnumService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ContentTypesService = TestBed.get(ContentTypesService);
+    const service: SelctFromEnumService = TestBed.get(SelctFromEnumService);
     expect(service).toBeTruthy();
   });
 });

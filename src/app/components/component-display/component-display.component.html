@@ -1,20 +1,21 @@
  <!--<usana-hero-slider></usana-hero-slider>-->
  <section *ngFor="let theData of data">
+   <!--Add your components here-->
+   <app-section-header *ngIf="theData.sectionHeader" [data]="theData.sectionHeader[0]"></app-section-header>
    <usana-hero-slider *ngIf="theData.heroSlide" [data]="{slides: theData.heroSlide, slideTime: 8000}"  ></usana-hero-slider>
- <!--<usana-button *ngIf="data.button" [data]="{buttonClass: 'button-primary-rect'}">button</usana-button>-->
-  <app-card-section *ngIf="theData.cards">
-    <usana-card *ngFor="let card of theData.cards" [data]="{
-    img: card.img,
-    title: card.title,
-    blobInfo: card.blobInfo,
-    buttonText: card.buttonText,
-    buttonClass: card.buttonClass,
-    fontStyle: card.fontStyle
-    }">
-    </usana-card>
-</app-card-section>
-  <app-text-left-section *ngIf="theData.textLeftIs" [data]="theData.textLeftIs[0]"></app-text-left-section>
-  <app-text-right-section *ngIf="theData.textRightIs" [data]="theData.textRightSection[0]"></app-text-right-section>
-  <app-text-centered-section *ngIf="theData.textCenterSection" [data]="theData.textCenterSection[0]"></app-text-centered-section>
-  <usana-cover-slider [data]="{slides: theData.heroCover, slideTime: 8000}" *ngIf="theData.heroCover"></usana-cover-slider>
+   <app-card-section *ngIf="theData.cards">
+   <usana-card *ngFor="let card of theData.cards" [data]="{
+   img: card.img,
+   title: card.title,
+   blobInfo: card.blobInfo,
+   buttonText: card.buttonText,
+   buttonClass: card.buttonClass,
+   fontStyle: card.fontStyle
+   }">
+   </usana-card>
+   </app-card-section>
+   <app-text-left-section *ngIf="theData.textLeftIs" [data]="theData.textLeftIs[0]"></app-text-left-section>
+   <app-text-right-section *ngIf="theData.textRightIs" [data]="theData.textRightSection[0]"></app-text-right-section>
+   <app-text-centered-section *ngIf="theData.textCenterSection" [data]="theData.textCenterSection[0]"></app-text-centered-section>
+   <usana-cover-slider [data]="{slides: theData.heroCover, slideTime: 8000}" *ngIf="theData.heroCover"></usana-cover-slider>
  </section>

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {PagesService} from '../../services/pages.service';
 import {ComponentsService} from '../../services/components.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {ContentTypesService} from '../../services/content-types.service';
+import {ContentService} from '../../services/content.service';
 import { Subscription } from 'rxjs';
 import { DragulaService } from 'ng2-dragula';
 @Component({
@@ -12,15 +12,14 @@ import { DragulaService } from 'ng2-dragula';
 })
 export class AddPageEditPageComponent implements OnInit, OnDestroy {
   contentAreas: any;
-  contentTypes: []
-  routeParams: any
-  dragulaData: any
+  contentTypes: [];
+  routeParams: any;
   data: any[];
   subs = new Subscription();
   constructor(private pageService: PagesService,
               private componentService: ComponentsService,
               private activeRoute: ActivatedRoute,
-              private  contentTypeService: ContentTypesService,
+              private  contentService: ContentService,
               private router: Router,
               private dragulaService: DragulaService
   ) {
@@ -33,20 +32,20 @@ export class AddPageEditPageComponent implements OnInit, OnDestroy {
   save() {
     this.contentAreas.map((e, i) => {
       e.order = i + 1
-      this.contentTypeService.updateOrder(e.id, e.order).subscribe();
+      this.contentService.updateOrder(e.id, e.order).subscribe();
     });
     return this.getContentAreasOnPage();
   }
 
   dataFromForm = (e) => {
  this.pageService.createNewPage(e).subscribe(x => {
-   console.log(x.createDraft.title);
+   console.log(x);
    return this.router.navigate(['/dashboard/add-edit/' + x.createDraft.title]);
 
  });
   }
   addNewItemToIterable = (area, areaName) => {
-    this.contentTypeService.addContentToIterable(area, areaName).subscribe(x => {
+    this.contentService.addContentToIterable(area, areaName).subscribe(x => {
       console.log(x);
     return this.router.navigate(['/dashboard/add-edit/' + this.routeParams.pageId + '/' + areaName + '/' + x.addContentToArea.id]);
     });
@@ -55,15 +54,17 @@ export class AddPageEditPageComponent implements OnInit, OnDestroy {
     this.routeParams = this.activeRoute.snapshot.params;
     this.pageService.queryContentTypes().subscribe(x => {
       this.contentTypes = x.allContentTypes;
-      // console.log(this.contentTypes);
+     console.log(this.contentTypes);
     });
     this.componentService.fetchComponentDataForPage(this.routeParams.pageId, true).subscribe(x => {
       this.contentAreas = x.contentAreasOnPage;
+      console.log(this.contentAreas);
     });
   }
 
   ngOnInit() {
   this.getContentAreasOnPage();
+  console.log('test')
   }
   ngOnDestroy() {
     this.dragulaService.destroy("VAMPIRES");

@@ -1,7 +1,7 @@
 
 <div class="dashboard-main">
   <div *ngIf="routeParams.pageId">
-  <h2>{{routeParams.pageId}}</h2> <span>Preview Page:  <a [href]="'../../../page/' + routeParams.pageId" target="_blankngnnn">{{routeParams.pageId}}</a></span>
+  <h2>{{routeParams.pageId}}</h2> <span>Preview Page:  <a [href]="'../../../preview/page/' + routeParams.pageId" target="_blank">{{routeParams.pageId}}</a></span>
 </div>
 
 <usana-form-input [data]="{label: 'Page Title' }" (dataOut)="dataFromForm($event)"*ngIf="!routeParams.pageId"></usana-form-input>
@@ -11,7 +11,7 @@
       <div>
       <h3>Add Component</h3>
       <div>
-        <a [routerLink]="'../' + routeParams.pageId + '/'+ content.typeName" *ngFor="let content of contentTypes">{{content.typeName}}</a>
+        <a class="button-anchor" [routerLink]="'../' + routeParams.pageId + '/'+ content.typeName" *ngFor="let content of contentTypes"><usana-button [data]="{buttonClass: 'button-large-secondary'}">{{content.typeName}}</usana-button></a>
       </div>
     </div>
 
@@ -20,48 +20,22 @@
     <div >
       <accordion [isAnimated]="true"  dragula="VAMPIRES" [(dragulaModel)]="contentAreas">
         <accordion-group [heading]="area.areaName" *ngFor="let area of contentAreas" class="accordion-thing">
-          <span *ngIf="area.areaName"> <usana-button [data]="{buttonClass: 'button-small-secondary'}" (click)="addNewItemToIterable(area.id, area.areaName)">+ {{area.areaName}}</usana-button></span>
+          <span *ngIf="area.areaName && area.iterable"> <usana-button [data]="{buttonClass: 'button-small-secondary'}" (click)="addNewItemToIterable(area.id, area.areaName)">+ {{area.areaName}}</usana-button></span>
           <div *ngFor="let content of area.content">
             <div>
               <a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id"  *ngIf="content.texts.length < 1">
                 <span>No Input For Content Type</span>
               </a>
             </div>
-
             <div  *ngFor="let texts of content.texts">
-
               <a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id" *ngIf="texts.inputTypeName === 'title'">
                 <span >{{texts.inputTypeValue}}</span>
               </a>
-
             </div>
-
-
           </div>
         </accordion-group>
       </accordion>
 <usana-button [data]="{buttonClass: 'button-large-primary'}" (click)="save()">save</usana-button>
-  <!--<div *ngFor="let area of contentAreas">-->
-
-    <!--<span *ngIf="area.areaName"> <usana-button [data]="{buttonClass: 'button-small-secondary'}" (click)="addNewItemToIterable(area.id, area.areaName)">+ {{area.areaName}}</usana-button></span>-->
-    <!--<div *ngFor="let content of area.content">-->
-      <!--<div>-->
-        <!--<a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id"  *ngIf="content.texts.length < 1">-->
-          <!--<span>No Input For Content Type</span>-->
-        <!--</a>-->
-      <!--</div>-->
-
-      <!--<div  *ngFor="let texts of content.texts">-->
-
-        <!--<a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id" *ngIf="texts.inputTypeName === 'title'">-->
-          <!--<span >{{texts.inputTypeValue}}</span>-->
-        <!--</a>-->
-
-      <!--</div>-->
-
-
-    <!--</div>-->
-  <!--</div>-->
 </div>
   </div>
   </div>

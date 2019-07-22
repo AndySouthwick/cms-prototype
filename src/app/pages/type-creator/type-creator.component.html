@@ -5,19 +5,20 @@
   <div *ngIf="inputFromField">
     <usana-form-input [data]="{label: 'Create Field Name'}" (dataOut)="this.createLabel($event)" ></usana-form-input>
     <usana-form-input [data]="{label: 'Create Help'}" (dataOut)="this.createHelp($event)" ></usana-form-input>
-    <usana-select-input [data]="{label: 'New Input Type', options: ['TEXT', 'RICH_TEXT', 'FILE', 'REFERENCE', 'TOGGLE', 'ITERABLE']}" (dataOut)="this.createInput($event)" ></usana-select-input>
+    <usana-select-input [data]="{label: 'New Input Type', options: this.selectValues}" (dataOut)="this.createInput($event)" ></usana-select-input>
     <usana-button [data]="{buttonClass: 'button-large-primary'}" (click)="sendMutationUp()" *ngIf="!selectedContentTypeName">Send</usana-button>
     <usana-button [data]="{buttonClass: 'button-large-primary'}" (click)="sendMutationUp(selectedContentTypeId, selectedContentTypeName)" *ngIf="selectedContentTypeName">Send</usana-button>
   </div>
 </div>
 <div class="view-all-content-types" >
-  <span (click)="clearField('createNew')" *ngIf="selectedContentTypeName" class="btn-link"> <- Create New</span>
+  <usana-button [data]="{buttonClass: 'button-small-secondary'}" (click)="clearField('createNew')" *ngIf="selectedContentTypeName" class="btn-link">Back</usana-button>
   <div class="input-types-section" *ngIf="inputFromField">
    <h2>{{selectedContentTypeName}}</h2>
+    <span><ui-switch [(ngModel)]="check" (change)="updateContentTypeIterable($event)"></ui-switch></span>
     <accordion [isAnimated]="true">
       <accordion-group [heading]="queryInputs.label" *ngFor="let queryInputs of queryData">
       <usana-form-input [data]="{label: 'Update Field Name', value: queryInputs.label}" (dataOut)="this.createLabel($event)"></usana-form-input>
-      <usana-select-input [data]="{label: 'Change Input Type', options: ['TEXT', 'RICH_TEXT', 'FILE', 'REFERENCE', 'TOGGLE', 'ITERABLE'], value: queryInputs.input}" (dataOut)="this.createInput($event)" ></usana-select-input>
+      <usana-select-input [data]="{label: 'Change Input Type', options: this.selectValues, value: queryInputs.input}" (dataOut)="this.createInput($event)" ></usana-select-input>
       <usana-form-input [data]="{label: 'Update Help Text', value: queryInputs.help}"  (dataOut)="this.createHelp($event)"></usana-form-input>
       <usana-button [data]="{buttonClass:'button-small-primary'}" (click)="updateType(queryInputs.id)">Save</usana-button>
       <usana-alert [data]="{ alertClass: 'alert-large-success', alertType: 'Success', alert: 'You saved'}" *ngIf="queryInputs.id ===  this.data"></usana-alert>
@@ -27,17 +28,11 @@
   </div>
   <div *ngIf="!inputFromField"  class="input-types-section">
     <h2>Input Type Names</h2>
-    <div *ngFor="let contentType of allContentTypes" class="input-type-names" (click)="queryInputTypesOfContentTypes(contentType.id, contentType.typeName)">
+    <div *ngFor="let contentType of allContentTypes" class="input-type-names" (click)="queryInputTypesOfContentTypes(contentType.id, contentType.typeName, contentType.iterable)">
       <span >{{contentType.typeName}}</span>
     </div>
   </div>
 </div>
 </section>
 </div>
-<!--<div *ngFor="let button of this.buttonData">-->
-  <!--<div *ngIf="button.cssClass !== undefined">-->
-  <!--<usana-button [data]="{buttonClass: button.cssClass}">-->
-    <!--{{button.buttonText}}-->
-  <!--</usana-button>-->
-<!--</div>-->
-<!--</div>-->
+

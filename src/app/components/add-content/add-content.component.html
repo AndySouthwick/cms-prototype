@@ -3,9 +3,11 @@
 <!--</div>-->
 <div class="dashboard-main">
 <div class="section-add-content">
+  <div class="content-button-section">
   <a [routerLink]="'/dashboard/add-edit/' + routeParams.pageId" *ngIf="inputTypes"><usana-button [data]="{buttonClass: 'button-small-secondary'}">back</usana-button> </a>
   <a [routerLink]="'/dashboard/image-service'" target="_blank" *ngIf="inputTypes"> <usana-button [data]="{buttonClass: 'button-small-secondary'}">Media</usana-button></a>
-  <div *ngFor="let input of inputTypes">
+  </div>
+    <div *ngFor="let input of inputTypes">
 
     <usana-form-input [data]="{label:  input.inputTypeName , value: input.inputTypeValue }"  class="content-input" (dataOut)="sendUpMutation($event, input.inputTypeName, input.id, input.input)" *ngIf="input.inputTypeName && input.input !== 'RichText'"></usana-form-input>
     <usana-form-input [data]="{label: input.label }"  class="content-input" (dataOut)="sendUpMutation($event, input.label, input.id, input.input)" *ngIf="input.label && input.input !== 'RICH_TEXT'"></usana-form-input>
@@ -16,7 +18,6 @@
     </div>
     <div *ngIf="input.label && input.input === 'RICH_TEXT'" class="ckeditor">
       <label>{{input.inputTypeName}}</label>
-
       <ckeditor [editor]="Editor" data="{{input.inputTypeValue}}" (blur)="sendUpMutationRich($event, input.label, input.id, input.input)"></ckeditor>
     </div>
 

@@ -33,7 +33,7 @@ export class PagesService extends Subscription {
      }
    }`;
  fetchContentTypes =  gql`query{allContentTypes{
-    id typeName
+    id typeName iterable
   }}
 `
 

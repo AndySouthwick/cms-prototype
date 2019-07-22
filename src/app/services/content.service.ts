@@ -8,16 +8,19 @@ import { map, flatMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 
-export class ContentTypesService extends Subscription {
+export class ContentService extends Subscription {
+  data: any
   ContentId: String;
-   QUERY_CONTENTY_TYPES =  gql`
-  {allContentTypes{
-    id typeName
+  iterable: Boolean;
+  QUERY_CONTENT_TYPE = gql` query contentType($name: String){
+    contentType(name: $name){
+      iterable
+    }
   }
-  }
-`
+  `
   QUERY_CONTENT = gql`query content($id: ID!){
     content(id: $id){
+      iterable
       id texts{
         id
         inputTypeName,
@@ -63,8 +66,8 @@ export class ContentTypesService extends Subscription {
       }
     }`
   MUTATION_CREATE_AREA =gql`
-    mutation createContentArea($pageName: String, $areaName: String){
-      createContentArea(pageName: $pageName, areaName: $areaName){
+    mutation createContentArea($pageName: String, $areaName: String, $iterable: Boolean){
+      createContentArea(pageName: $pageName, areaName: $areaName, iterable: $iterable){
         id
       }
     }
@@ -116,7 +119,8 @@ export class ContentTypesService extends Subscription {
               mutation: this.MUTATION_CREATE_AREA,
               variables: {
                 pageName: pageName,
-                areaName: contentTypeName
+                areaName: contentTypeName,
+                iterable: this.iterable
               }
             })
               .pipe(flatMap(({data}) => {
@@ -218,13 +222,18 @@ export class ContentTypesService extends Subscription {
        }
      }).valueChanges.pipe(map(({data}) => data));;
   }
-  queryContentTypes (): Observable<any> {
-    return  this.apollo.watchQuery({
-      query: this.QUERY_CONTENTY_TYPES
-    }).valueChanges.pipe(map(({data}) => data));
-  }
-
   fetchInputOnContentType (id, typeName): Observable<any> {
+     console.log(typeName)
+     this.apollo.watchQuery({
+       query: this.QUERY_CONTENT_TYPE,
+       variables: {
+         name: typeName
+       }
+     }).valueChanges.subscribe(({data}) => {
+       this.data = data
+       this.iterable =  this.data.contentType.iterable;
+
+     });
     return this.apollo.watchQuery({
       query: this.QUERY_INPUT_OF_CONTENT_TYPE,
       variables: {

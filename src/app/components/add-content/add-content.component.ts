@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ContentTypesService} from '../../services/content-types.service';
+import {ContentService} from '../../services/content.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -14,7 +14,7 @@ export class AddContentComponent implements OnInit {
   routeParams: any;
   inputArray: []
   contentId: String;
-  constructor(private contentTypesService: ContentTypesService,
+  constructor(private contentService: ContentService,
               private activeRoute: ActivatedRoute,
               private router: Router) { }
   fetchFields = () => {
@@ -22,18 +22,15 @@ export class AddContentComponent implements OnInit {
 
 
     const filterByInputType = (inputFromType, inputFromName) => {
-
       if (inputFromType === inputFromName) {
-        // console.log(inputFromName)
         return inputFromName;
       } else {
-        // console.log(inputFromType)
         return inputFromType;
       }
     }
 
     if (this.routeParams.contentId) {
-        this.contentTypesService.fetchInputOnContentType(null, this.routeParams.contentTypeName).subscribe(x => {
+        this.contentService.fetchInputOnContentType(null, this.routeParams.contentTypeName).subscribe(x => {
           // console.log(x)
           let inputTypeArray  = [];
           let inputArray = []
@@ -41,7 +38,8 @@ export class AddContentComponent implements OnInit {
             // console.log(e)
             inputTypeArray = [...inputTypeArray, {inputTypeName: e.label, inputTypeValue: '', __typename: e.input}];
         });
-          this.contentTypesService.queryContent(this.routeParams.contentId).subscribe(y => {
+          this.contentService.queryContent(this.routeParams.contentId).subscribe(y => {
+            console.log('the content ', y)
             let textArray = [];
             let richTextArray = [];
             y.content.texts.map(e => {
@@ -87,7 +85,7 @@ export class AddContentComponent implements OnInit {
       });
 
     } else {
-      this.contentTypesService.fetchInputOnContentType(null, this.routeParams.contentTypeName).subscribe(x => {
+      this.contentService.fetchInputOnContentType(null, this.routeParams.contentTypeName).subscribe(x => {
         this.inputTypes = x.inputTypesOfContentType;
          console.log( this.inputTypes);
       });
@@ -97,14 +95,14 @@ export class AddContentComponent implements OnInit {
   sendUpMutation = (inputValue, inputName, inputId, input) => {
     // console.log(input.toUpperCase());
   if (!this.routeParams.contentId) {
-    this.contentTypesService.addTheTextToTheContent(this.routeParams.pageId, this.routeParams.contentTypeName, null, inputValue, inputName, inputId, input.toUpperCase())
+    this.contentService.addTheTextToTheContent(this.routeParams.pageId, this.routeParams.contentTypeName, null, inputValue, inputName, inputId, input.toUpperCase())
       .subscribe(x => {
         console.log(x);
         return this.router.navigate(['/dashboard/add-edit/' + this.routeParams.pageId + '/' + this.routeParams.contentTypeName + '/' + x.contentId]);
       });
   }
     else {
-      this.contentTypesService.addTheTextToTheContent(this.routeParams.pageId, this.routeParams.contentTypeName, this.routeParams.contentId, inputValue, inputName, inputId, input.toUpperCase())
+      this.contentService.addTheTextToTheContent(this.routeParams.pageId, this.routeParams.contentTypeName, this.routeParams.contentId, inputValue, inputName, inputId, input.toUpperCase())
         .subscribe(x => {
            console.log(x);
         });

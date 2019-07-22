@@ -2,6 +2,16 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import gql from 'graphql-tag';
 import {Apollo} from 'apollo-angular';
 
+const QUERY_SELECT_VALUES = gql`
+  query type($name: String!){
+    __type(name: $name){
+      enumValues{
+        name
+      }
+    }
+  }
+`
+
 const CREATE_TYPE = gql`
   mutation createContentType($typeName: String){
     createContentType(typeName: $typeName){
@@ -21,9 +31,19 @@ const CREATE_INPUT = gql`
     }
   }
 `
-const QUERY_CONTENTY_TYPES =  gql`
+const UPDATE_CONTENT_TYPE = gql` mutation updateContentType($id: ID!, $typeName: String, $iterable: Boolean){
+  updateContentType(
+    id: $id,
+    typeName: $typeName,
+    iterable: $iterable
+  ){
+    id
+  }
+}
+`
+const QUERY_CONTENT_TYPES =  gql`
   {allContentTypes{
-  id typeName
+  id typeName iterable
   }
   }
 `
@@ -62,13 +82,48 @@ export class TypeCreatorComponent implements OnInit, OnDestroy {
   allContentTypes: {};
   inputFromField: Boolean;
   selectedContentTypeName: String;
-  alert: Boolean
+  check: Boolean;
+  selectValues: any[];
   constructor(private apollo: Apollo) {
 
   }
+
+
+  updateContentTypeIterable = (e) => {
+    console.log(this.selectedContentTypeName)
+console.log('before switch', e);
+    this.apollo.mutate({
+      mutation: UPDATE_CONTENT_TYPE,
+      variables: {
+        typeName: this.selectedContentTypeName,
+        id: this.typeId,
+        iterable: e
+      },
+    }).subscribe(({data}) => console.log(data));
+  }
+
+  queryInputValues = () => {
+    this.apollo.watchQuery({
+      query: QUERY_SELECT_VALUES,
+      variables: {
+        name: 'Input'
+      }
+    }).valueChanges.subscribe(({data, loading}) => {
+      if (loading) {
+        console.log(loading);
+      }
+      let array = []
+      this.data = data;
+      this.data.__type.enumValues.map((e) => {
+        array = [...array, e.name];
+
+      });
+      this.selectValues = array;
+    });
+  }
   queryContentTypes = () => {
     this.apollo.watchQuery({
-      query: QUERY_CONTENTY_TYPES
+      query: QUERY_CONTENT_TYPES
     }).valueChanges.subscribe(({data}) => {
       this.data = data
       this.allContentTypes = this.data.allContentTypes;
@@ -115,7 +170,14 @@ export class TypeCreatorComponent implements OnInit, OnDestroy {
     }
 
   }
-  queryInputTypesOfContentTypes = (id, typeName) => {
+  queryInputTypesOfContentTypes = (id, typeName, iterable) => {
+    console.log(iterable)
+    if (iterable) {
+      this.check = true;
+    }
+    if (!iterable) {
+      this.check = false;
+    }
     this.selectedContentTypeName = typeName
     console.log(id)
     this.typeId = id
@@ -174,6 +236,7 @@ export class TypeCreatorComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
   this.queryContentTypes();
+  this.queryInputValues();
   }
 ngOnDestroy() {
 }

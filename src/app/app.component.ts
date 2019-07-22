@@ -14,9 +14,7 @@ export class AppComponent implements OnInit {
   dashboardNav: Boolean;
   ngOnInit() {
     this.routerParams = this.activeRoute.snapshot.params;
-    console.log(this.routerParams)
     this.path = window.location.pathname;
-    console.log(this.path);
     if (this.path.match('/dashboard\*')) {
       this.dashboardNav = true;
     }

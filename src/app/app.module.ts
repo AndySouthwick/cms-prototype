@@ -27,6 +27,8 @@ import { ImageToolComponent } from './pages/image-tool/image-tool.component';
 import { AddImageComponent } from './components/add-image/add-image.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { UiSwitchModule } from 'ngx-toggle-switch';
+
 import { setTheme } from 'ngx-bootstrap/utils';
 import { ImageFolderSectionComponent } from './components/image-folder-section/image-folder-section.component';
 import { ImageDetailsComponent } from './components/image-details/image-details.component';
@@ -36,6 +38,7 @@ import { SideNavigationComponent } from './components/side-navigation/side-navig
 import { AddPageEditPageComponent } from './components/add-page-edit-page/add-page-edit-page.component';
 import { AddContentComponent } from './components/add-content/add-content.component';
 import { DragulaModule } from 'ng2-dragula';
+import { SectionHeaderComponent } from './components/section-header/section-header.component';
 @NgModule({
   schemas: [NO_ERRORS_SCHEMA],
   declarations: [
@@ -58,6 +61,7 @@ import { DragulaModule } from 'ng2-dragula';
     SideNavigationComponent,
     AddPageEditPageComponent,
     AddContentComponent,
+    SectionHeaderComponent,
   ],
   imports: [
     CKEditorModule,
@@ -78,7 +82,8 @@ import { DragulaModule } from 'ng2-dragula';
     BrowserAnimationsModule,
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
-    DragulaModule.forRoot()
+    DragulaModule.forRoot(),
+    UiSwitchModule
   ],
   bootstrap: [AppComponent]
 })

@@ -13,6 +13,9 @@
   margin-bottom: 16px;
   min-width: 500px;
 }
-//.section-add-page-edit-page{
-//  margin: 80px
-//}
+.button-anchor{
+  margin-bottom: 8px;
+  ::ng-deep .button-large-secondary{
+    min-width:168px;
+  }
+}

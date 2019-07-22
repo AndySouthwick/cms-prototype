@@ -11,7 +11,7 @@ import {AddContentComponent} from './components/add-content/add-content.componen
   imports: [RouterModule.forRoot([
     {path: '', component: HomeComponent},
     {path: 'dashboard/image-service', component: ImageToolComponent},
-    {path: 'page/:id', component: PageComponent},
+    {path: 'preview/page/:id', component: PageComponent},
     {path: 'dashboard/type-creator', component: TypeCreatorComponent},
     {path: 'dashboard', component: AdminComponent},
     {path: 'dashboard/add-edit', component: AddPageEditPageComponent},
