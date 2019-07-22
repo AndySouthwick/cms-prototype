@@ -14,10 +14,6 @@ import { CardSectionComponent } from './components/card-section/card-section.com
 import { TextLeftSectionComponent } from './components/text-left-section/text-left-section.component';
 import { TextRightSectionComponent } from './components/text-right-section/text-right-section.component';
 import { TextCenteredSectionComponent } from './components/text-centered-section/text-centered-section.component';
-import {
-  UsanaHeroSliderModule, UsanaCardModule, UsanaFormInputModule, UsanaButtonModule,
-  UsanaTextArea, UsanaSelectInputModule, UsanaAlertModule, CoverSliderModule
-} from '@usana/component-library';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule } from '@angular/forms';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -71,14 +67,6 @@ import { SectionHeaderComponent } from './components/section-header/section-head
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
-    UsanaHeroSliderModule,
-    UsanaCardModule,
-    UsanaFormInputModule,
-    UsanaButtonModule,
-    UsanaTextArea,
-    UsanaSelectInputModule,
-    UsanaAlertModule,
-    CoverSliderModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
