@@ -1,0 +1,49 @@
+@import '../../../style-params';
+label{
+  @include font-news-caption;
+}
+.input {
+  display: flex;
+  //flex-direction: column;
+  .inset-icon {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    right: 28px;
+    top: 24px;
+  }
+  //.valid-icon{
+  //  background: url("../icons/valid.svg")  no-repeat;
+  //}
+  //.alert-icon{
+  //  background: url("../icons/alert.svg")  no-repeat;
+  //}
+  //.warning-icon{
+  //  background: url("../icons/warning.svg")  no-repeat;
+  //}
+
+  input {
+    padding-left: 8px;
+    height: 40px;
+    width: 96%;
+    font-size:  $font-body-font-size;
+    border-radius: 4px;
+    border: 2px solid $usana-grey-400;
+    margin: 8px 0 24px;
+    &:focus {
+      border: 2px solid $usana-blue-300;
+    }
+  }
+  .warning {
+    border: 2px solid $usana-red-500;
+  }
+  .alert {
+    border: 2px solid $usana-yellow-500;
+  }
+  .valid {
+    border: 2px solid $usana-green-400;
+  }
+  .active {
+    border: 2px solid $usana-blue-300;
+  }
+}

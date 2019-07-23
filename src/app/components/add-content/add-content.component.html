@@ -4,17 +4,17 @@
 <div class="dashboard-main">
 <div class="section-add-content">
   <div class="content-button-section">
-  <a [routerLink]="'/dashboard/add-edit/' + routeParams.pageId" *ngIf="inputTypes"><usana-button [data]="{buttonClass: 'button-small-secondary'}">back</usana-button> </a>
-  <a [routerLink]="'/dashboard/image-service'" target="_blank" *ngIf="inputTypes"> <usana-button [data]="{buttonClass: 'button-small-secondary'}">Media</usana-button></a>
+  <a [routerLink]="'/dashboard/add-edit/' + routeParams.pageId" *ngIf="inputTypes"><button class="button-small-secondary">back</button> </a>
+  <a [routerLink]="'/dashboard/image-service'" target="_blank" *ngIf="inputTypes"> <button class="button-small-secondary">Media</button></a>
   </div>
     <div *ngFor="let input of inputTypes">
-<div *ngIf="input.inputTypeName && input.input !== 'RichText'">
-  <label>{{input.inputTypeName}}</label>
-  <input value="{{input.inputTypeValue}}" class="content-input" (blur)="sendUpMutation($event.target.value, input.inputTypeName, input.id, input.input)" >
+<div>
+  <app-input [data]="{label: input.inputTypeName, value: input.inputTypeValue}"
+             class="content-input" (blur)="sendUpMutation($event,
+             input.inputTypeName, input.id, input.input)" *ngIf="input.inputTypeName && input.input !== 'RichText'"></app-input>
 </div>
       <div *ngIf="input.label && input.input !== 'RICH_TEXT'">
-        <label>{{input.label}}</label>
-        <input  class="content-input" (blur)="sendUpMutation($event.target.value, input.label, input.id, input.input)" >
+        <app-input [data]="{label: input.label}" class="content-input" (blur)="sendUpMutation($event, input.label, input.id, input.input)" ></app-input>
       </div>
 
     <div *ngIf="input.inputTypeName && input.input === 'RichText'" class="ckeditor">
@@ -28,7 +28,7 @@
 
   </div>
   <div class="button-input">
-    <usana-button [data]="{buttonClass: 'button-large-primary'}" *ngIf="inputTypes">Save</usana-button>
+    <button class="button-large-primary" *ngIf="inputTypes">Save</button>
   </div>
 </div>
 </div>

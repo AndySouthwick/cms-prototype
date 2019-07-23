@@ -10,7 +10,6 @@
   width: 100%;
 }
 .button-input{
-  width: 700px;
   display: flex;
   justify-content: flex-end;
   margin-left: 12px;
@@ -29,4 +28,13 @@
   a{
     margin-right: 8px;
   }
+}
+.input-set{
+  width: 700px;
+  label{
+    margin: 16px 0 8px;
+  }
+ input{
+   width: 100%;
+ }
 }

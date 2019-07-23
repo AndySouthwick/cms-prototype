@@ -4,14 +4,16 @@
   <h2>{{routeParams.pageId}}</h2> <span>Preview Page:  <a [href]="'../../../preview/page/' + routeParams.pageId" target="_blank">{{routeParams.pageId}}</a></span>
 </div>
 
-<usana-form-input [data]="{label: 'Page Title' }" (dataOut)="dataFromForm($event)"*ngIf="!routeParams.pageId"></usana-form-input>
+  <div *ngIf="!routeParams.pageId">
+    <app-input [data]="{label: 'Page Title'}" (change)="dataFromForm($event)"></app-input>
+  </div>
 
 
   <div *ngIf="routeParams.pageId" class="add-to-page">
       <div>
       <h3>Add Component</h3>
       <div>
-        <a class="button-anchor" [routerLink]="'../' + routeParams.pageId + '/'+ content.typeName" *ngFor="let content of contentTypes"><usana-button [data]="{buttonClass: 'button-large-secondary'}">{{content.typeName}}</usana-button></a>
+        <a class="button-anchor" [routerLink]="'../' + routeParams.pageId + '/'+ content.typeName" *ngFor="let content of contentTypes"><button class="button-large-secondary">{{content.typeName}}</button></a>
       </div>
     </div>
 
@@ -20,7 +22,7 @@
     <div >
       <accordion [isAnimated]="true"  dragula="VAMPIRES" [(dragulaModel)]="contentAreas">
         <accordion-group [heading]="area.areaName" *ngFor="let area of contentAreas" class="accordion-thing">
-          <span *ngIf="area.areaName && area.iterable"> <usana-button [data]="{buttonClass: 'button-small-secondary'}" (click)="addNewItemToIterable(area.id, area.areaName)">+ {{area.areaName}}</usana-button></span>
+          <span *ngIf="area.areaName && area.iterable"> <button class="button-small-secondary" (click)="addNewItemToIterable(area.id, area.areaName)">+ {{area.areaName}}</button></span>
           <div *ngFor="let content of area.content">
             <div>
               <a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id"  *ngIf="content.texts.length < 1">
@@ -35,7 +37,7 @@
           </div>
         </accordion-group>
       </accordion>
-<usana-button [data]="{buttonClass: 'button-large-primary'}" (click)="save()">save</usana-button>
+<button class="button-large-primary" (click)="save()">save</button>
 </div>
   </div>
   </div>

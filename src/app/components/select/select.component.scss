@@ -1,0 +1,47 @@
+@import '../../../style-params';
+.select{
+  display: flex;
+}
+select{
+  position: relative;
+  border-color: $usana-grey-400!important;
+  border-width: 2px;
+  border-style: solid;
+  border-image: initial;
+  box-shadow: none;
+  border-radius:3px;
+  height: 40px;
+  background: $usana-white-000;
+  width: 96%;
+  font-weight: 200;
+  font-size: 14px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Add some styling */
+  margin: 8px 0;
+  padding: 0 4px;
+  line-height: 1.75;
+  color: #333;
+  option{
+    margin: 40px;
+    color: #fff;
+    background: $usana-white-000;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }
+}
+.down-arrow {
+  display: inline;
+  pointer-events: none;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  //margin: 12px 0 0 -32px ;
+  position: relative;
+  top:24px;
+  right: 32px;
+  z-index: 999;
+}
+label{
+  @include font-news-caption()
+}

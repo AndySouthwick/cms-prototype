@@ -38,7 +38,8 @@ export class AddPageEditPageComponent implements OnInit, OnDestroy {
   }
 
   dataFromForm = (e) => {
- this.pageService.createNewPage(e).subscribe(x => {
+    console.log()
+ this.pageService.createNewPage(e.target.value).subscribe(x => {
    console.log(x);
    return this.router.navigate(['/dashboard/add-edit/' + x.createDraft.title]);
 
@@ -64,7 +65,6 @@ export class AddPageEditPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
   this.getContentAreasOnPage();
-  console.log('test')
   }
   ngOnDestroy() {
     this.dragulaService.destroy("VAMPIRES");

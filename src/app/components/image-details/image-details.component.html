@@ -1,10 +1,10 @@
 <div class="edit-image-section" *ngIf="data.imageUrl">
   <a href="{{data.imageUrl}}" target="_blank"> <img src="{{data.imageUrl}}" alt="" width="320"></a>
   <div class="button-left">
-    <usana-button [data]="{buttonClass: 'button-mini-tertiary'}" (click)=" this.callParent()">Copy Image Location</usana-button>
+    <button class="button-small-secondary" (click)=" this.callParent()">Copy Image Location</button>
   </div>
-  <usana-form-input [data]="{label: 'Alt Text',  value: data.altText}"></usana-form-input>
+  <app-input [data]="{label: 'Alt Text',  value: data.altText}"></app-input>
   <div class="button-left">
-    <usana-button [data]="{buttonClass: 'button-large-primary'}">Save</usana-button>
+    <button class="button-large-primary" >Save</button>
   </div>
 </div>

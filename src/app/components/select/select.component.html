@@ -1,0 +1,9 @@
+<label>{{data.label}}</label>
+<div class="select">
+  <select (change)="this.getStringForSelected($event.target.value)" [value]='data.value'>
+    <option value="">...</option>
+    <option value="{{option}}" *ngFor="let option of data.options">{{option}}</option>
+  </select>
+  <div class="down-arrow"></div>
+</div>
+

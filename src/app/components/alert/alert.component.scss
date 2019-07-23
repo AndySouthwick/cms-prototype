@@ -1,0 +1,76 @@
+@import '../../../style-params';
+
+
+@mixin alertLarge{
+  border-radius: 4px;
+  padding: 16px;
+}
+@mixin alertMedium{
+  border-radius: 4px;
+  padding: 12px 16px;
+}
+@mixin alertSmall{
+  border-radius: 4px;
+  padding: 8px 16px;
+}
+//success
+
+@mixin alertSuccess {
+  background-color: $usana-green-100;
+  border: solid 1px $usana-green-500;
+}
+
+.alert-large-success{
+  @include alertSuccess;
+  @include alertLarge
+}
+.alert-medium-success{
+  @include alertSuccess;
+  @include alertMedium
+}
+.alert-small-success{
+  @include alertSuccess;
+  @include alertSmall
+}
+
+//warning
+
+@mixin alertWarning {
+  background-color: $usana-yellow-100;
+  border: solid 1px $usana-yellow-500;
+}
+
+.alert-large-warning{
+  @include alertWarning;
+  @include alertLarge
+}
+
+.alert-medium-warning{
+  @include alertWarning;
+  @include alertMedium
+}
+.alert-small-warning{
+  @include alertWarning;
+  @include alertSmall
+}
+
+//danger
+
+@mixin alertDanger {
+  background-color: $usana-red-100;
+  border: solid 1px $usana-red-500;
+}
+
+.alert-large-danger{
+  @include alertDanger;
+  @include alertLarge
+}
+
+.alert-medium-danger{
+  @include alertDanger;
+  @include alertMedium
+}
+.alert-small-danger{
+  @include alertDanger;
+  @include alertSmall
+}

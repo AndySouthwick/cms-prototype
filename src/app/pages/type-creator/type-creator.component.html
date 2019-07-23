@@ -1,27 +1,27 @@
 <div class="dashboard-main">
 <section class="section-content-types">
 <div class="create-section">
-  <usana-form-input [data]="{label: 'Content Type Name', value: selectedContentTypeName}" (dataOut)="this.createTypeName($event)" ></usana-form-input>
+  <app-input [data]="{label: 'Content Type Name', value: selectedContentTypeName}" (dataOut)="this.createTypeName($event)" ></app-input>
   <div *ngIf="inputFromField">
-    <usana-form-input [data]="{label: 'Create Field Name'}" (dataOut)="this.createLabel($event)" ></usana-form-input>
-    <usana-form-input [data]="{label: 'Create Help'}" (dataOut)="this.createHelp($event)" ></usana-form-input>
-    <usana-select-input [data]="{label: 'New Input Type', options: this.selectValues}" (dataOut)="this.createInput($event)" ></usana-select-input>
-    <usana-button [data]="{buttonClass: 'button-large-primary'}" (click)="sendMutationUp()" *ngIf="!selectedContentTypeName">Send</usana-button>
-    <usana-button [data]="{buttonClass: 'button-large-primary'}" (click)="sendMutationUp(selectedContentTypeId, selectedContentTypeName)" *ngIf="selectedContentTypeName">Send</usana-button>
+    <app-input [data]="{label: 'Create Field Name'}" (dataOut)="this.createLabel($event)" ></app-input>
+    <app-input [data]="{label: 'Create Help'}" (dataOut)="this.createHelp($event)" ></app-input>
+    <app-select [data]="{label: 'New Input Type', options: this.selectValues}" (dataOut)="this.createInput($event)" ></app-select>
+    <button class="button-large-primary" (click)="sendMutationUp()" *ngIf="!selectedContentTypeName">Send</button>
+    <button class="button-large-primary" (click)="sendMutationUp(selectedContentTypeId, selectedContentTypeName)" *ngIf="selectedContentTypeName">Send</button>
   </div>
 </div>
 <div class="view-all-content-types" >
-  <usana-button [data]="{buttonClass: 'button-small-secondary'}" (click)="clearField('createNew')" *ngIf="selectedContentTypeName" class="btn-link">Back</usana-button>
+  <button class="button-small-secondary" (click)="clearField('createNew')" *ngIf="selectedContentTypeName">Back</button>
   <div class="input-types-section" *ngIf="inputFromField">
    <h2>{{selectedContentTypeName}}</h2>
     <span><ui-switch [(ngModel)]="check" (change)="updateContentTypeIterable($event)"></ui-switch></span>
     <accordion [isAnimated]="true">
       <accordion-group [heading]="queryInputs.label" *ngFor="let queryInputs of queryData">
-      <usana-form-input [data]="{label: 'Update Field Name', value: queryInputs.label}" (dataOut)="this.createLabel($event)"></usana-form-input>
-      <usana-select-input [data]="{label: 'Change Input Type', options: this.selectValues, value: queryInputs.input}" (dataOut)="this.createInput($event)" ></usana-select-input>
-      <usana-form-input [data]="{label: 'Update Help Text', value: queryInputs.help}"  (dataOut)="this.createHelp($event)"></usana-form-input>
-      <usana-button [data]="{buttonClass:'button-small-primary'}" (click)="updateType(queryInputs.id)">Save</usana-button>
-      <usana-alert [data]="{ alertClass: 'alert-large-success', alertType: 'Success', alert: 'You saved'}" *ngIf="queryInputs.id ===  this.data"></usana-alert>
+      <app-input [data]="{label: 'Update Field Name', value: queryInputs.label}" (dataOut)="this.createLabel($event)"></app-input>
+      <app-select [data]="{label: 'Change Input Type', options: this.selectValues, value: queryInputs.input}" (dataOut)="this.createInput($event)" ></app-select>
+      <app-input [data]="{label: 'Update Help Text', value: queryInputs.help}"  (dataOut)="this.createHelp($event)"></app-input>
+        <button class="button-large-primary" (click)="updateType(queryInputs.id)">Save</button>
+      <app-alert [data]="{ alertClass: 'alert-large-success', alertType: 'Success', alert: 'You saved'}" *ngIf="queryInputs.id ===  this.data"></app-alert>
       </accordion-group>
     </accordion>
 

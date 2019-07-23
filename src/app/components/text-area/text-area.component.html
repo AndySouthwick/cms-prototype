@@ -1,0 +1,7 @@
+<label>{{data.label}}</label>
+<textarea  (input)="this.getStringForTextArea($event.target.value)" ></textarea>
+<div *ngIf="data.inputMessage" class="{{data.inputMessageClass}}">{{data.inputMessage}</div>
+
+
+
+

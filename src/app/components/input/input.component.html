@@ -1,0 +1,9 @@
+<label>{{data.label}}</label>
+<div class="input" (click)="this.removeIcon()">
+  <input type="{{data.inputType}}" (change)="this.getStringForInput($event.target.value)" class="{{data.textInputClass}}" placeholder="{{data.placeholder}}" value="{{data.value}}"/>
+  <div class="inset-icon {{data.icon}}" *ngIf="data.icon"></div>
+</div>
+<div *ngIf="data.inputMessage" class="{{data.inputMessageClass}}">{{data.inputMessage}}</div>
+
+
+

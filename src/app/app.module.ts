@@ -35,6 +35,10 @@ import { AddPageEditPageComponent } from './components/add-page-edit-page/add-pa
 import { AddContentComponent } from './components/add-content/add-content.component';
 import { DragulaModule } from 'ng2-dragula';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
+import { InputComponent } from './components/input/input.component';
+import { SelectComponent } from './components/select/select.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { TextAreaComponent } from './components/text-area/text-area.component';
 @NgModule({
   schemas: [NO_ERRORS_SCHEMA],
   declarations: [
@@ -58,6 +62,10 @@ import { SectionHeaderComponent } from './components/section-header/section-head
     AddPageEditPageComponent,
     AddContentComponent,
     SectionHeaderComponent,
+    InputComponent,
+    SelectComponent,
+    AlertComponent,
+    TextAreaComponent,
   ],
   imports: [
     CKEditorModule,

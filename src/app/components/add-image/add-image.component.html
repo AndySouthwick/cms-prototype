@@ -1,5 +1,5 @@
 
-<usana-button (click)="openModal(template)" [data]="{buttonClass: 'button-mini-primary'}">Add New Image</usana-button>
+<button (click)="openModal(template)" class="button-small-primary">Add New Image</button>
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Add an Image Here</h4>
@@ -9,15 +9,15 @@
   </div>
   <div class="modal-body">
     <input  type="file" name="file" id="file"
-            accept="image/png, image/jpeg" class="file-input" (change)="this.updateFile($event)">
+                accept="image/png, image/jpeg" class="file-input" (change)="this.updateFile($event)"/>
     <label for="file">Choose a file</label>
     <span> {{fileName}}</span>
     <div>
-      <usana-text-area [data]="{label: 'Alt Text'}"(dataOut)="this.updateAltText($event)"></usana-text-area>
+      <app-text-area [data]="{label: 'Alt Text'}"(dataOut)="this.updateAltText($event)"></app-text-area>
     </div>
     <div>
-      <usana-select-input [data]="{label: 'Choose Component Type', options: ['Card', 'Cover', 'Hero', 'Product']}" (dataOut)="this.updateImageCompType($event)"></usana-select-input>
+      <app-select [data]="{label: 'Choose Component Type', options: ['Card', 'Cover', 'Hero', 'Product']}" (dataOut)="this.updateImageCompType($event)"></app-select>
     </div>
-    <usana-button [data]="{buttonClass: 'button-large-success'}" (click)="this.sendEvent($event)" >Save</usana-button>
+    <button class="button-large-primary" (click)="this.sendEvent($event)" >Save</button>
   </div>
 </ng-template>

@@ -27,7 +27,7 @@
   <div class="edit-section">
     <div class="alert-box" *ngIf="this.state.alert">
 
-      <usana-alert [data]="this.state.alert"></usana-alert>
+      <app-alert [data]="this.state.alert"></app-alert>
     </div>
     <app-image-details [data]="this.singleImageDetails" *ngIf="singleImageDetails" (dataOut)="copyMessage($event)"></app-image-details>
   </div>

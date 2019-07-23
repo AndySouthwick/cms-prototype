@@ -1,0 +1,17 @@
+@import '../../../style-params';
+label{
+  @include font-news-caption;
+}
+
+textarea {
+  padding-left: 8px;
+  height: 40px;
+  width: 96%;
+  font-size:  $font-body-font-size;
+  border-radius: 4px;
+  border: 2px solid $usana-grey-400;
+  margin: 8px 0;
+  &:focus {
+    border: 2px solid $usana-blue-300;
+  }
+}
