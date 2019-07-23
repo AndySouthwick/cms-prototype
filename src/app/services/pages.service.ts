@@ -9,7 +9,6 @@ import { map, flatMap } from 'rxjs/operators';
 })
 export class PagesService extends Subscription {
   data: any
-  typeData: any
    document =  gql`query {
     allPages {
       id title
@@ -24,14 +23,6 @@ export class PagesService extends Subscription {
       id title
     }
   }`;
-   createContentAreaMain = gql`mutation createContentArea($areaName: String, $pageId: ID!){
-     createContentArea(
-       areaName: $areaName
-       pageId: $pageId
-     ){
-       id
-     }
-   }`;
  fetchContentTypes =  gql`query{allContentTypes{
     id typeName iterable
   }}
@@ -47,7 +38,7 @@ export class PagesService extends Subscription {
        mutation: this.createPage,
        variables: {
          title: title,
-         id: 'cjxavq82m001607991oavqcbs'
+         id: 'cjygedbef001k0847vi3jd2yx'
        }
      }).pipe(map(({data}) => data));
   }
