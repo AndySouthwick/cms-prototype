@@ -93,6 +93,7 @@ export class AddContentComponent implements OnInit {
 
   }
   sendUpMutation = (inputValue, inputName, inputId, input) => {
+    console.log(inputValue)
     // console.log(input.toUpperCase());
   if (!this.routeParams.contentId) {
     this.contentService.addTheTextToTheContent(this.routeParams.pageId, this.routeParams.contentTypeName, null, inputValue, inputName, inputId, input.toUpperCase())
