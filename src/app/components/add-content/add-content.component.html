@@ -10,11 +10,11 @@
     <div *ngFor="let input of inputTypes">
 <div>
   <app-input [data]="{label: input.inputTypeName, value: input.inputTypeValue}"
-             class="content-input" (blur)="sendUpMutation($event,
+             class="content-input" (change)="sendUpMutation($event.target.value,
              input.inputTypeName, input.id, input.input)" *ngIf="input.inputTypeName && input.input !== 'RichText'"></app-input>
 </div>
       <div *ngIf="input.label && input.input !== 'RICH_TEXT'">
-        <app-input [data]="{label: input.label}" class="content-input" (blur)="sendUpMutation($event, input.label, input.id, input.input)" ></app-input>
+        <app-input [data]="{label: input.label}" class="content-input" (change)="sendUpMutation($event.target.value, input.label, input.id, input.input)" ></app-input>
       </div>
 
     <div *ngIf="input.inputTypeName && input.input === 'RichText'" class="ckeditor">
