@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PagesService} from '../../services/pages.service';
+import {PagesService} from '../../services/pagesService/pages.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',

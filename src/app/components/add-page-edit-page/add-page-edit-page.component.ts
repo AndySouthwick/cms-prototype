@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {PagesService} from '../../services/pages.service';
-import {ComponentsService} from '../../services/components.service';
+import {PagesService} from '../../services/pagesService/pages.service';
+import {ComponentsService} from '../../services/componentsService/components.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {ContentService} from '../../services/content.service';
+import {ContentService} from '../../services/contentService/content.service';
 import { Subscription } from 'rxjs';
 import { DragulaService } from 'ng2-dragula';
 @Component({
@@ -48,7 +48,7 @@ export class AddPageEditPageComponent implements OnInit, OnDestroy {
   addNewItemToIterable = (area, areaName) => {
     this.contentService.addContentToIterable(area, areaName).subscribe(x => {
       console.log(x);
-    return this.router.navigate(['/dashboard/add-edit/' + this.routeParams.pageId + '/' + areaName + '/' + x.addContentToArea.id]);
+    return this.router.navigate(['/dashboard/add-edit/' + `${this.routeParams.pageId}` + '/' + areaName + '/' + x.addContentToArea.id]);
     });
   }
   getContentAreasOnPage = () => {
@@ -57,7 +57,7 @@ export class AddPageEditPageComponent implements OnInit, OnDestroy {
       this.contentTypes = x.allContentTypes;
      console.log(this.contentTypes);
     });
-    this.componentService.fetchComponentDataForPage(this.routeParams.pageId, true).subscribe(x => {
+    this.componentService.fetchComponentDataForPage( this.routeParams.pageId, true).subscribe(x => {
       this.contentAreas = x.contentAreasOnPage;
       console.log(this.contentAreas);
     });

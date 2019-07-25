@@ -23,7 +23,7 @@ export class ComponentsService extends Subscription {
           }
       }`
 // tslint:enable
-  fetchComponentDataForPage (page, isDashboard): Observable<any> {
+  fetchComponentDataForPage ( page, isDashboard): Observable<any> {
     let pollInterval
     isDashboard ? pollInterval = null : pollInterval = 5000;
    return this.apollo.watchQuery({

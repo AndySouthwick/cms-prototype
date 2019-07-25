@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {ImageService} from '../../services/image.service';
+import {ImageService} from '../../services/copyImageService/image.service';
 
 @Component({
   selector: 'app-image-folder-section',

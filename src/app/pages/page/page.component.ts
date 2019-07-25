@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {ComponentsService} from '../../services/components.service';
+import {ComponentsService} from '../../services/componentsService/components.service';
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',

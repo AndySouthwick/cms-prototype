@@ -1,5 +1,5 @@
 import { Component, OnInit, Output,  Input, EventEmitter, OnDestroy} from '@angular/core';
-import {ImageService} from '../../services/image.service';
+import {ImageService} from '../../services/copyImageService/image.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-add-image',

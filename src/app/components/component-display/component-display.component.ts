@@ -15,7 +15,7 @@ export class ComponentDisplayComponent implements OnInit {
   ngOnInit() {
     this.hero = this.data.hero;
     this.cards = this.data.cards;
-    console.log('from component display');
+    console.log('from component display', this.data);
   }
 
 }

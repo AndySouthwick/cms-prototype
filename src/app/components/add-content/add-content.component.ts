@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ContentService} from '../../services/content.service';
+import {ContentService} from '../../services/contentService/content.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -96,14 +96,14 @@ export class AddContentComponent implements OnInit {
     console.log(inputValue)
     // console.log(input.toUpperCase());
   if (!this.routeParams.contentId) {
-    this.contentService.addTheTextToTheContent(this.routeParams.pageId, this.routeParams.contentTypeName, null, inputValue, inputName, inputId, input.toUpperCase())
+    this.contentService.addTheTextToTheContent(`${this.routeParams.pageId}`, this.routeParams.contentTypeName, null, inputValue, inputName, inputId, input.toUpperCase())
       .subscribe(x => {
         console.log(x);
-        return this.router.navigate(['/dashboard/add-edit/' + this.routeParams.pageId + '/' + this.routeParams.contentTypeName + '/' + x.contentId]);
+        return this.router.navigate(['/dashboard/add-edit/' + `${this.routeParams.pageId}` + '/' + this.routeParams.contentTypeName + '/' + x.contentId]);
       });
   }
     else {
-      this.contentService.addTheTextToTheContent(this.routeParams.pageId, this.routeParams.contentTypeName, this.routeParams.contentId, inputValue, inputName, inputId, input.toUpperCase())
+      this.contentService.addTheTextToTheContent(`${this.routeParams.pageId}`, this.routeParams.contentTypeName, this.routeParams.contentId, inputValue, inputName, inputId, input.toUpperCase())
         .subscribe(x => {
            console.log(x);
         });

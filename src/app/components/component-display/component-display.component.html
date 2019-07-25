@@ -1,3 +1,15 @@
  <section *ngFor="let theData of data">
-   <!--Add your components here-->
+
+   <div *ngIf="theData.card">
+     <div *ngFor="let card of theData.card">
+       {{card.title}}
+     </div>
+   </div>
+
+   <div *ngIf="theData.heroSlide">
+     <div *ngFor="let heroSlide of theData.heroSlide">
+       {{heroSlide.title}}
+     </div>
+   </div>
+
  </section>
