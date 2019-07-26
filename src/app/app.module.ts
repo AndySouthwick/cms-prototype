@@ -39,6 +39,7 @@ import { InputComponent } from './components/input/input.component';
 import { SelectComponent } from './components/select/select.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { TextAreaComponent } from './components/text-area/text-area.component';
+import { SiteTopNavComponent } from './components/site-top-nav/site-top-nav.component';
 @NgModule({
   schemas: [NO_ERRORS_SCHEMA],
   declarations: [
@@ -66,6 +67,7 @@ import { TextAreaComponent } from './components/text-area/text-area.component';
     SelectComponent,
     AlertComponent,
     TextAreaComponent,
+    SiteTopNavComponent,
   ],
   imports: [
     CKEditorModule,

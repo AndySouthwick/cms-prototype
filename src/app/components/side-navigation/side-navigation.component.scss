@@ -1,5 +1,6 @@
 @import "../../../style-params";
 nav.side-nav{
+  z-index: 999;
   width: 240px;
   height: 100%;
   position: fixed;
@@ -18,4 +19,13 @@ nav.side-nav{
       margin-top: 21px;
     }
   }
+}
+nav.hide{
+  display: none;
+}
+.bars{
+  z-index: 9999;
+  position: fixed;
+  top:88px;
+  left:24px;
 }
