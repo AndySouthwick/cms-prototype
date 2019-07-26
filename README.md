@@ -9,8 +9,44 @@ your components data. This adds the model to the page creator on /dashboard.
 
 We took the idea of creating content types from drupal. So your content types are what house the data or the content.
 
+## install instructions
+
+Clone the project
+NPM Install
+The corresponding server is found at
+prism cms
+
+Click to clone server project
+On server project
+npm install -g prisma
+docker-compose up -d
+prisma deploy
+prisma generate
+node index.js or nodemon index.js
+I'm taking some liberties believing that you have node installed.
+
+After the project is running create a user on the gql query GUI
+
+got to localhost:4000
+run this mutation in the GUI mutation{ createUser(name: "<NAME OF USER>" email: "<EMAIL FOR USER>" hashed: "<PWD>){ id } }
+on angular project
+Copy the created user id and navigate to the page service in the Angular project and paste in as the id variable in the createNewPage function
+createNewPage (title): Observable<any> { return this.apollo.mutate({ mutation: this.createPage, variables: { title: title, ** id: 'cjygedbef001k0847vi3jd2yx'** } }).pipe(map(({data}) => data)); }
+
+Navigate to the localhost:4200/dashboard or the port your Angular app is running on
+Create a page
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
+
+# To Do
+- [ ] Localization
+- [ ] Add blog area that functions like pages
+- [ ] Add manage user area
+- [ ] rules for permissions
+- [ ] Publish date timer
+- [ ] Workflow notification
+
 
 ## Development server
 
@@ -37,10 +73,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-# To Do
-- [ ] Localization
-- [ ] Add blog area that functions like pages
-- [ ] Add manage user area
-- [ ] rules for permissions
-- [ ] Publish date timer
-- [ ] Workflow notification
+
