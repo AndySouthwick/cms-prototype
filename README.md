@@ -15,7 +15,7 @@ We took the idea of creating content types from drupal. So your content types ar
 2. NPM Install
 ### On server project
 
-3. [Click to clone server project] (https://github.com/AndySouthwick/prisma-cms)
+3. [Click to clone server project](https://github.com/AndySouthwick/prisma-cms)
 
 run these commands
 
