@@ -21,7 +21,7 @@ QUERY_TOP_NAV = gql`query {
   }
 }`
   constructor(private apollo: Apollo) { }
-  topNav: []
+  topNav: any
   queryTopNav = () => {
   this.apollo.watchQuery({
     query: this.QUERY_TOP_NAV

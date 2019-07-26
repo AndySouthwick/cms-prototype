@@ -40,6 +40,7 @@ import { SelectComponent } from './components/select/select.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { TextAreaComponent } from './components/text-area/text-area.component';
 import { SiteTopNavComponent } from './components/site-top-nav/site-top-nav.component';
+import { TemplateAreaCreatorComponent } from './pages/template-area-creator/template-area-creator.component';
 @NgModule({
   schemas: [NO_ERRORS_SCHEMA],
   declarations: [
@@ -68,6 +69,7 @@ import { SiteTopNavComponent } from './components/site-top-nav/site-top-nav.comp
     AlertComponent,
     TextAreaComponent,
     SiteTopNavComponent,
+    TemplateAreaCreatorComponent,
   ],
   imports: [
     CKEditorModule,

@@ -7,12 +7,14 @@ import {TypeCreatorComponent} from './pages/type-creator/type-creator.component'
 import {AdminComponent} from './pages/admin/admin.component'
 import {AddPageEditPageComponent} from './components/add-page-edit-page/add-page-edit-page.component';
 import {AddContentComponent} from './components/add-content/add-content.component';
+import {TemplateAreaCreatorComponent} from "./pages/template-area-creator/template-area-creator.component";
 @NgModule({
   imports: [RouterModule.forRoot([
     {path: '', component: HomeComponent},
     {path: 'dashboard/image-service', component: ImageToolComponent},
     {path: 'preview/page/:id', component: PageComponent},
     {path: 'dashboard/type-creator', component: TypeCreatorComponent},
+    {path: 'dashboard/template-area-creator', component: TemplateAreaCreatorComponent},
     {path: 'dashboard', component: AdminComponent},
     {path: 'dashboard/add-edit', component: AddPageEditPageComponent},
     {path: 'dashboard/add-edit/:pageId', component: AddPageEditPageComponent},

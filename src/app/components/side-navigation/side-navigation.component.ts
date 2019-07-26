@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-navigation.component.scss']
 })
 export class SideNavigationComponent implements OnInit {
-  navToggle: String
-  barsToggle: String
+  navToggle: String;
+  barsToggle: String;
+  toggle: boolean
   constructor() { }
 
   navClicked = (show) => {
