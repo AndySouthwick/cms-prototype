@@ -11,30 +11,35 @@ We took the idea of creating content types from drupal. So your content types ar
 
 ## install instructions
 
-Clone the project
-NPM Install
-The corresponding server is found at
-prism cms
+1. Clone the project
+2. NPM Install
+### On server project
 
-Click to clone server project
-On server project
-npm install -g prisma
-docker-compose up -d
-prisma deploy
-prisma generate
-node index.js or nodemon index.js
+3. [Click to clone server project] (https://github.com/AndySouthwick/prisma-cms)
+
+run these commands
+
+4. `npm install -g prisma`
+5. `docker-compose up -d`
+6. `prisma deploy`
+7. `prisma generate`
+8. `node index.js or nodemon index.js`
+
 I'm taking some liberties believing that you have node installed.
 
 After the project is running create a user on the gql query GUI
 
-got to localhost:4000
-run this mutation in the GUI mutation{ createUser(name: "<NAME OF USER>" email: "<EMAIL FOR USER>" hashed: "<PWD>){ id } }
-on angular project
-Copy the created user id and navigate to the page service in the Angular project and paste in as the id variable in the createNewPage function
-createNewPage (title): Observable<any> { return this.apollo.mutate({ mutation: this.createPage, variables: { title: title, ** id: 'cjygedbef001k0847vi3jd2yx'** } }).pipe(map(({data}) => data)); }
+9. got to localhost:4000
+10. run this mutation in the GUI ```mutation{ createUser(name: "<NAME OF USER>" email: "<EMAIL FOR USER>" hashed: "<PWD>){ id } }```
 
-Navigate to the localhost:4200/dashboard or the port your Angular app is running on
-Create a page
+### on angular project
+11. Copy the created user id and navigate to the page service in the Angular project and paste in as the id variable in the createNewPage 
+```function
+createNewPage (title): Observable<any> { return this.apollo.mutate({ mutation: this.createPage, variables: { title: title, ** id: 'cjygedbef001k0847vi3jd2yx'** } }).pipe(map(({data}) => data)); }
+```
+
+12. Navigate to the localhost:4200/dashboard or the port your Angular app is running on
+13. Create a page
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
