@@ -79,3 +79,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 
+# To Do
+- [ ] Template Area Creator
+- [ ] Localization
+- [ ] Add blog area that functions like pages
+- [ ] Add manage user area
+- [ ] rules for permissions
+- [ ] Publish date timer
+- [ ] Workflow notification
+

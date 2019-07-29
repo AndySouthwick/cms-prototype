@@ -1,0 +1,7 @@
+<nav>
+  <ul>
+    <li *ngFor="let nav of topNav">
+      <a [routerLink]="['/preview/page', nav.linkUrl]">{{nav.linkText}}</a>
+    </li>
+  </ul>
+</nav>

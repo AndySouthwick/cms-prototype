@@ -38,7 +38,7 @@ export class PagesService extends Subscription {
        mutation: this.createPage,
        variables: {
          title: title,
-         id: 'cjygedbef001k0847vi3jd2yx'
+         id: 'cjyke7lqm001g08562pg4fbin'
        }
      }).pipe(map(({data}) => data));
   }

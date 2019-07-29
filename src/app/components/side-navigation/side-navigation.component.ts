@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-navigation.component.scss']
 })
 export class SideNavigationComponent implements OnInit {
-
+  navToggle: String;
+  barsToggle: String;
+  toggle: boolean
   constructor() { }
 
+  navClicked = (show) => {
+    if (show) {this.navToggle = ''; this.toggle = false; }
+    if (!show) {this.navToggle = 'hide';  this.toggle = true; }
+
+  }
+
   ngOnInit() {
+    this.navToggle = 'hide';
   }
 
 }

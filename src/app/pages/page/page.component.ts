@@ -14,8 +14,8 @@ export class PageComponent implements OnInit, OnDestroy {
   constructor(private componentsService: ComponentsService,
               private activeRoute: ActivatedRoute) {
   }
-  loadTheComponents(): void {
-    const routeParams = this.activeRoute.snapshot.params;
+  loadTheComponents(routeParams): void {
+
     this.loadComponents = this.componentsService.fetchComponentDataForPage(routeParams.id, false)
       .subscribe(x => {
         console.log(x);
@@ -51,7 +51,9 @@ export class PageComponent implements OnInit, OnDestroy {
         });
   }
   ngOnInit() {
-    this.loadTheComponents();
+    this.activeRoute.params.subscribe(routeParams => {
+      this.loadTheComponents(routeParams);
+    });
   }
   ngOnDestroy() {
     this.loadComponents.unsubscribe();

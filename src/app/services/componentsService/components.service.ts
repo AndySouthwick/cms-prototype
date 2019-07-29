@@ -27,7 +27,7 @@ export class ComponentsService extends Subscription {
     let pollInterval
     isDashboard ? pollInterval = null : pollInterval = 5000;
    return this.apollo.watchQuery({
-     pollInterval: pollInterval,
+     // pollInterval: pollInterval,
       query: this.document,
       variables: {
         pageName: page,
