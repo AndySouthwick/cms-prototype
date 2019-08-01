@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PagesService} from '../../services/pagesService/pages.service';
 import {TemplateAreaService} from '../../services/templateAreaService/template-area.service';
 import {ContentService} from '../../services/contentService/content.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-template-area-creator',
@@ -9,11 +10,15 @@ import {ContentService} from '../../services/contentService/content.service';
   styleUrls: ['./template-area-creator.component.scss']
 })
 export class TemplateAreaCreatorComponent implements OnInit  {
+  routeParams: Object;
+  pageArray: Array<any>;
 
   constructor(
    private pages: PagesService,
    private template: TemplateAreaService,
-   private content: ContentService
+   private content: ContentService,
+   private activeRoute: ActivatedRoute,
+   private router: Router,
   ) {
   }
   fetchPageTitles = () => {
@@ -22,8 +27,13 @@ export class TemplateAreaCreatorComponent implements OnInit  {
     });
   }
 
-  createTemplateArea = () => {
-
+  createTemplateArea = (e) => {
+   this.template.createTemplateArea(e.target.value).subscribe(x => {
+     console.log('from template area function', x);
+     this.template.addContentToTemplateArea(x).subscribe(y => {
+       console.log('contentObject for template are content', y);
+     });
+   });
   }
 
   addContentToTemplateArea = () => {
@@ -31,6 +41,8 @@ export class TemplateAreaCreatorComponent implements OnInit  {
   }
 
   ngOnInit() {
+    this.routeParams = this.activeRoute.snapshot.params;
+    console.log(this.routeParams)
     this.fetchPageTitles();
   }
 

@@ -1,5 +1,43 @@
 <div class="dashboard-main">
-  <p>
-    template-area-creator works!
-  </p>
+    <div *ngIf="routeParams.pageId">
+      <h2>{{routeParams.pageId}}</h2> <span>Preview Page:  <a [href]="'../../../preview/page/' + routeParams.pageId" target="_blank">{{routeParams.pageId}}</a></span>
+    </div>
+
+    <div *ngIf="!routeParams.templateId">
+      <app-input [data]="{label: 'Create Template Area'}" (change)="createTemplateArea($event)"></app-input>
+    </div>
+
+
+    <div *ngIf="routeParams.pageId" class="add-to-page">
+      <div>
+        <h3>Add Component</h3>
+        <div>
+          <a class="button-anchor" [routerLink]="'../' + routeParams.pageId + '/'+ content.typeName" *ngFor="let content of contentTypes"><button class="button-large-secondary">{{content.typeName}}</button></a>
+        </div>
+      </div>
+
+      <div >
+        <h3>Edit Component</h3>
+        <div >
+          <accordion [isAnimated]="true"  dragula="VAMPIRES" [(dragulaModel)]="contentAreas">
+            <accordion-group [heading]="area.areaName" *ngFor="let area of contentAreas" class="accordion-thing">
+              <span *ngIf="area.areaName && area.iterable"> <button class="button-small-secondary" (click)="addNewItemToIterable(area.id, area.areaName)">+ {{area.areaName}}</button></span>
+              <div *ngFor="let content of area.content">
+                <div>
+                  <a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id"  *ngIf="content.texts.length < 1">
+                    <span>No Input For Content Type</span>
+                  </a>
+                </div>
+                <div  *ngFor="let texts of content.texts">
+                  <a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id" *ngIf="texts.inputTypeName === 'title'">
+                    <span >{{texts.inputTypeValue}}</span>
+                  </a>
+                </div>
+              </div>
+            </accordion-group>
+          </accordion>
+          <button class="button-large-primary" (click)="save()">save</button>
+        </div>
+      </div>
+    </div>
 </div>

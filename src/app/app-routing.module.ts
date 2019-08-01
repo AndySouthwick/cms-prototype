@@ -15,6 +15,7 @@ import {TemplateAreaCreatorComponent} from "./pages/template-area-creator/templa
     {path: 'preview/page/:id', component: PageComponent},
     {path: 'dashboard/type-creator', component: TypeCreatorComponent},
     {path: 'dashboard/template-area-creator', component: TemplateAreaCreatorComponent},
+    {path: 'dashboard/template-area-creator/:templateId', component: TemplateAreaCreatorComponent},
     {path: 'dashboard', component: AdminComponent},
     {path: 'dashboard/add-edit', component: AddPageEditPageComponent},
     {path: 'dashboard/add-edit/:pageId', component: AddPageEditPageComponent},
