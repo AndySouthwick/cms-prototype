@@ -23,16 +23,9 @@ export class PagesService extends Subscription {
       id title
     }
   }`;
- fetchContentTypes =  gql`query{allContentTypes{
-    id typeName iterable
-  }}
-`
 
-  queryContentTypes (): Observable<any> {
-   return  this.apollo.watchQuery({
-      query: this.fetchContentTypes
-    }).valueChanges.pipe(map(({data}) => data));
-  }
+
+
    createNewPage (title): Observable<any> {
      return this.apollo.mutate({
        mutation: this.createPage,

@@ -77,9 +77,8 @@ export class AddContentComponent implements OnInit {
 
             })
 
-            const merged = [].concat.apply([], newResult);
+            this.inputTypes = [].concat.apply([], newResult);
             // console.log('merged and fire', merged)
-            this.inputTypes = merged;
             // console.log('merged', this.inputTypes);
           });
       });
@@ -103,6 +102,7 @@ export class AddContentComponent implements OnInit {
       });
   }
     else {
+      console.log(this.routeParams.contentTypeName)
       this.contentService.addTheTextToTheContent(`${this.routeParams.pageId}`, this.routeParams.contentTypeName, this.routeParams.contentId, inputValue, inputName, inputId, input.toUpperCase())
         .subscribe(x => {
            console.log(x);

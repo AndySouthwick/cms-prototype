@@ -21,6 +21,18 @@ export class TemplateAreaService extends Subscription {
       }
     }
   `
+  QUERY_TEMPLATE_AREAS = gql`
+    query {
+      templateAreas{
+        areaName id  order content {
+          id contentTypeName order
+          texts {
+            inputTypeName inputTypeValue id
+          }
+        }
+      }
+    }
+  `
 
   createTemplateArea (name):  Observable<any> {
     console.log(name)
@@ -31,14 +43,18 @@ export class TemplateAreaService extends Subscription {
       }
     }).pipe(map(({data}) => data));
   }
-  addContentToTemplateArea (areaId): Observable<any> {
-    console.log(areaId.createTemplateArea.id)
+  addContentToTemplateArea (areaName, areaId): Observable<any> {
    return this.apollo.mutate({
       mutation: this.ADD_CONTENT_TO_TEMPLATE_AREA,
       variables: {
-        areaId: areaId.createTemplateArea.id,
-        areaName: areaId.createTemplateArea.areaName
+        areaId: areaId,
+        areaName: areaName
       }
+    }).pipe(map(({data}) => data));
+  }
+  queryTemplateAreas (): Observable<any> {
+    return this.apollo.subscribe({
+      query: this.QUERY_TEMPLATE_AREAS
     }).pipe(map(({data}) => data));
   }
 }

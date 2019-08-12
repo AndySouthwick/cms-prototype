@@ -1,43 +1,37 @@
 <div class="dashboard-main">
-    <div *ngIf="routeParams.pageId">
-      <h2>{{routeParams.pageId}}</h2> <span>Preview Page:  <a [href]="'../../../preview/page/' + routeParams.pageId" target="_blank">{{routeParams.pageId}}</a></span>
-    </div>
-
-    <div *ngIf="!routeParams.templateId">
+  <div *ngIf="!routeParams.templateId">
       <app-input [data]="{label: 'Create Template Area'}" (change)="createTemplateArea($event)"></app-input>
     </div>
 
-
-    <div *ngIf="routeParams.pageId" class="add-to-page">
-      <div>
-        <h3>Add Component</h3>
-        <div>
-          <a class="button-anchor" [routerLink]="'../' + routeParams.pageId + '/'+ content.typeName" *ngFor="let content of contentTypes"><button class="button-large-secondary">{{content.typeName}}</button></a>
-        </div>
-      </div>
-
-      <div >
-        <h3>Edit Component</h3>
-        <div >
-          <accordion [isAnimated]="true"  dragula="VAMPIRES" [(dragulaModel)]="contentAreas">
-            <accordion-group [heading]="area.areaName" *ngFor="let area of contentAreas" class="accordion-thing">
-              <span *ngIf="area.areaName && area.iterable"> <button class="button-small-secondary" (click)="addNewItemToIterable(area.id, area.areaName)">+ {{area.areaName}}</button></span>
-              <div *ngFor="let content of area.content">
-                <div>
-                  <a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id"  *ngIf="content.texts.length < 1">
-                    <span>No Input For Content Type</span>
-                  </a>
-                </div>
-                <div  *ngFor="let texts of content.texts">
-                  <a [routerLink]="'../' + routeParams.pageId + '/'+ content.contentTypeName + '/' + content.id" *ngIf="texts.inputTypeName === 'title'">
-                    <span >{{texts.inputTypeValue}}</span>
-                  </a>
-                </div>
-              </div>
-            </accordion-group>
-          </accordion>
-          <button class="button-large-primary" (click)="save()">save</button>
-        </div>
-      </div>
+    <div *ngIf="!routeParams.templateId">
+      <ul>
+        <Li *ngFor="let area of templateAreas"><a [routerLink]="area.areaName">{{area.areaName}}</a></Li>
+      </ul>
     </div>
+
+  <div class="flexbox-container" *ngFor="let area of templateAreas">
+    <div>
+      <div *ngIf="routeParams.templateId === area.areaName" class="add-to-page">
+
+        <div>
+          <h3>Add {{area.areaName}}</h3>
+          <div *ngFor="let area of templateAreas">
+            <div *ngIf="area.areaName === routeParams.templateId" class="content-type-list">
+              <button class="button-large-secondary" *ngFor="let content of contentTypes" (click)="addContentToTemplateArea(content.typeName, content)">add {{content.typeName}}</button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    <div class="itterabox" *ngIf="routeParams.templateId === area.areaName">
+    <h3>Edit Items</h3>
+      <accordion [isAnimated]="true">
+        <accordion-group [heading]="contentItem.contentTypeName" *ngFor="let contentItem of area.content">
+          <app-input *ngFor="let input of contentItem.texts" [data]="{label: input.inputTypeName, value: input.inputTypeValue}" (change)="updateContent(input.id, input.inputTypeName, $event)"></app-input>
+        </accordion-group>
+      </accordion>
+    </div>
+  </div>
+
 </div>

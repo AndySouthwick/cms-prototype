@@ -78,14 +78,24 @@ export class ContentService extends Subscription {
         id
       }
     }
-  `
+  `;
   MUTATION_ORDER_CONTENT = gql`
     mutation updateContentArea($areaId: ID, $order: Int){
       updateContentArea(areaId: $areaId, order: $order){
         order
       }
     }
-  `
+  `;
+  addTextToContentTemplateArea = (templateAreaId, typeName, typeValue) => {
+    return this.apollo.mutate({
+      mutation: this.MUTATION_ADD_TEXT,
+      variables: {
+        contentId: templateAreaId,
+        inputTypeName: typeName,
+        inputTypeValue: typeValue
+      }
+    }).pipe(map(({data}) => data));
+  }
   updateOrder(id, order): Observable <any> {
      console.log(id, order)
      return this.apollo.mutate({
@@ -110,6 +120,21 @@ export class ContentService extends Subscription {
            contentTypeName: contentTypeName
          }
        }).pipe(map(({data}) => data));
+    }
+    updateContent(textId, typeName, typeValue): Observable<any>{
+      return  this.apollo.mutate({
+        mutation: this.MUTATION_UPDATE_TEXT,
+        variables: {
+          id: textId,
+          inputTypeName: typeName,
+          inputTypeValue: typeValue
+        }
+      }).pipe(map(({data, loading, err}) => {
+        if (err) { console.log(err); }
+        if (loading) { return loading; }
+        console.log(data);
+        return data;
+      }));
     }
       addTheTextToTheContent(pageName, contentTypeName, contentId, typeValue, typeName, textId, input): Observable<any> {
      // console.log(pageName, contentId, typeValue, typeName, textId)

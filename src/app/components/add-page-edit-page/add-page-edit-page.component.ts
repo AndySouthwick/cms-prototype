@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {ContentService} from '../../services/contentService/content.service';
 import { Subscription } from 'rxjs';
 import { DragulaService } from 'ng2-dragula';
+import {ContentTypeService} from "../../services/contentTypeService/content-type.service"
 @Component({
   selector: 'app-add-page-edit-page',
   templateUrl: './add-page-edit-page.component.html',
@@ -17,6 +18,7 @@ export class AddPageEditPageComponent implements OnInit, OnDestroy {
   data: any[];
   subs = new Subscription();
   constructor(private pageService: PagesService,
+              private contenTypeService: ContentTypeService,
               private componentService: ComponentsService,
               private activeRoute: ActivatedRoute,
               private  contentService: ContentService,
@@ -47,15 +49,15 @@ export class AddPageEditPageComponent implements OnInit, OnDestroy {
   }
   addNewItemToIterable = (area, areaName) => {
     this.contentService.addContentToIterable(area, areaName).subscribe(x => {
+      console.log('it is it', area, areaName)
       console.log(x);
     return this.router.navigate(['/dashboard/add-edit/' + `${this.routeParams.pageId}` + '/' + areaName + '/' + x.addContentToArea.id]);
     });
   }
   getContentAreasOnPage = () => {
     this.routeParams = this.activeRoute.snapshot.params;
-    this.pageService.queryContentTypes().subscribe(x => {
-      this.contentTypes = x.allContentTypes;
-     console.log(this.contentTypes);
+    this.contenTypeService.queryFilteredTypes(false, true, false).subscribe(x => {
+      this.contentTypes = x.filteredContentTypes;
     });
     this.componentService.fetchComponentDataForPage( this.routeParams.pageId, true).subscribe(x => {
       this.contentAreas = x.contentAreasOnPage;

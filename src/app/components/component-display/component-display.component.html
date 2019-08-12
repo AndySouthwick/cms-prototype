@@ -12,4 +12,10 @@
      </div>
    </div>
 
+   <div *ngIf="theData.center">
+     <div *ngFor="let center of theData.center">
+      <div [innerHTML]="center.text"></div>
+     </div>
+   </div>
+
  </section>

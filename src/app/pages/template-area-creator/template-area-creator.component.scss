@@ -1,0 +1,17 @@
+.itterabox{
+  min-width: 200px;
+  min-height: 200px;
+}
+.flexbox-container{
+  div{
+    margin-right: 32px;
+  }
+  display: flex;
+}
+.content-type-list{
+  display: flex;
+  flex-direction: column;
+  button{
+    margin-bottom: 8px;
+  }
+}
