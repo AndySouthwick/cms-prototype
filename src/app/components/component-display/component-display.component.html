@@ -6,6 +6,12 @@
      </div>
    </div>
 
+   <div *ngIf="theData.staticHero">
+     <div *ngFor="let static of theData.staticHero">
+       {{static.title}}
+     </div>
+   </div>
+
    <div *ngIf="theData.heroSlide">
      <div *ngFor="let heroSlide of theData.heroSlide">
        {{heroSlide.title}}
@@ -17,5 +23,6 @@
       <div [innerHTML]="center.text"></div>
      </div>
    </div>
+
 
  </section>
